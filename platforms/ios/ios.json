@@ -1,0 +1,43 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"ZeroConf\"><param name=\"ios-package\" value=\"ZeroConf\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.gizmet.dynoforce"
+        },
+        "cordova-plugin-zeroconf": {
+            "PACKAGE_NAME": "com.gizmet.dynoforce"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-zeroconf/www/zeroconf.js",
+            "id": "cordova-plugin-zeroconf.ZeroConf",
+            "pluginId": "cordova-plugin-zeroconf",
+            "clobbers": [
+                "cordova.plugins.zeroconf"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.2.0",
+        "cordova-plugin-zeroconf": "1.0.1"
+    }
+}
