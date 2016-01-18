@@ -26,22 +26,21 @@ var app = {
     }
 };
 
-
 function init() {
     var zc;
     $('#btnadd').click(function(){
 
         zc = cordova.plugins.zeroconf;
-        zc.register('_http._tcp.local.', 'DynoForce', 80, { 'foo': 'bar'});
+        zc.register('_http._tcp.local.', 'DynoForce-'+device.model, 80, { 'foo': 'bar'});
         zc.watch('_http._tcp.local', function(result) {
             var action = result.action;
             var service = result.service;
-            if (action === 'added' && service.name === 'DynoForce') {
+            if (action === 'added'){// && service.name === 'DynoForce') {
                 // alert("ADDED: "+service);
                 console.log("ADDED:")
                 console.log(service)
             }
-            else if (action === 'removed' && service.name === 'DynoForce') {
+            else if (action === 'removed'){// && service.name === 'DynoForce') {
                 // alert("REMOVED: "+service);
                 console.log("REMOVED: ")
                 console.log(service)

@@ -11,6 +11,10 @@
                         {
                             "xml": "<feature name=\"ZeroConf\"><param name=\"ios-package\" value=\"ZeroConf\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -23,6 +27,9 @@
         },
         "cordova-plugin-zeroconf": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.gizmet.dynoforce"
         }
     },
     "dependent_plugins": {},
@@ -34,10 +41,19 @@
             "clobbers": [
                 "cordova.plugins.zeroconf"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.0",
-        "cordova-plugin-zeroconf": "1.0.1"
+        "cordova-plugin-zeroconf": "1.0.1",
+        "cordova-plugin-device": "1.1.0"
     }
 }

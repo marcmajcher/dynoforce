@@ -17,6 +17,9 @@
     <feature name="ZeroConf">
         <param name="ios-package" value="ZeroConf" />
     </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <name>DynoForce</name>
