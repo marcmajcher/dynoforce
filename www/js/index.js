@@ -22,7 +22,7 @@ var app = {
     receivedEvent: function(id) {
         StatusBar.overlaysWebView(false);
         StatusBar.hide();
-        // alert("Received")
+        console.log("deviceready");
     }
 };
 
@@ -30,7 +30,6 @@ var app = {
 function init() {
     var zc;
     $('#btnadd').click(function(){
-
         zc = cordova.plugins.zeroconf;
         zc.register('_http._tcp.local.', 'DynoForce', 80, { 'foo': 'bar'});
         zc.watch('_http._tcp.local', function(result) {
@@ -58,5 +57,8 @@ function init() {
         console.log(zc)
     });
 
+    $('#btnstart').click(function() {
+        console.log("START")
+    });
 }
 $(document).ready(init);
