@@ -15,6 +15,10 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WebSocketServer\"><param name=\"ios-package\" value=\"WebSocketServer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -29,6 +33,9 @@
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.gizmet.dynoforce"
+        },
+        "cordova-plugin-websocket-server": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         }
     },
@@ -49,11 +56,20 @@
             "clobbers": [
                 "device"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-websocket-server/www/wsserver.js",
+            "id": "cordova-plugin-websocket-server.WebSocketServer",
+            "pluginId": "cordova-plugin-websocket-server",
+            "clobbers": [
+                "cordova.plugins.wsserver"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-zeroconf": "1.0.1",
-        "cordova-plugin-device": "1.1.0"
+        "cordova-plugin-device": "1.1.0",
+        "cordova-plugin-websocket-server": "1.0.3"
     }
 }

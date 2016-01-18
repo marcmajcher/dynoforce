@@ -6,6 +6,9 @@
 	objectVersion = 46;
 	objects = {
 /* Begin PBXBuildFile section */
+		07211FA47EAE45E9A642DFFB /* WebSocketServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CB84C45F7448EB77E388E /* WebSocketServer.swift */; };
+		11C14C612B934151A1544F38 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */; };
+		12CD1FD9BF624B82927C942F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ED80F0B3772744B697EF6CA0 /* libz.tbd */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -28,6 +31,7 @@
 		30C1856619D5FC0A00212699 /* icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C1856519D5FC0A00212699 /* icon-60@3x.png */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		61BDA4B656DD4FFEBCCFD5DF /* libPocketSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487ABDF408844F54B7DE7155 /* libPocketSocket.a */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -39,8 +43,10 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		993C1E76DB894A1D9637DDDA /* ZeroConf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE2C7DDF384F6A99573293 /* ZeroConf.swift */; };
+		A61F31B2F5E249F1912B2CF9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F10857BE8542E3B1A69D33 /* Security.framework */; };
+		B1A25321BC33412EAD1BB772 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40F14774264C9A9FD752BF /* Foundation.framework */; };
+		C2D776F932BC4762A024EE84 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		11C14C612B934151A1544F38 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		0ADE2C7DDF384F6A99573293 /* ZeroConf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = ZeroConf.swift; path = "cordova-plugin-zeroconf/ZeroConf.swift"; sourceTree = "<group>"; };
+		1BA71C447B2C4D89BC7FDDA4 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSWebSocketTypes.h; path = "cordova-plugin-websocket-server/PSWebSocketTypes.h"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* DynoForce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynoForce.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +95,11 @@
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* DynoForce-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DynoForce-Prefix.pch"; sourceTree = "<group>"; };
+		36F10857BE8542E3B1A69D33 /* Security.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		487ABDF408844F54B7DE7155 /* libPocketSocket.a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = libPocketSocket.a; path = "DynoForce/Plugins/cordova-plugin-websocket-server/libPocketSocket.a"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		674CB84C45F7448EB77E388E /* WebSocketServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = WebSocketServer.swift; path = "cordova-plugin-websocket-server/WebSocketServer.swift"; sourceTree = "<group>"; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
 		7E7966D61810823500FA85AD /* icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-50.png"; sourceTree = "<group>"; };
@@ -100,14 +111,19 @@
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* DynoForce-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DynoForce-Info.plist"; path = "../DynoForce-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A90047937817409EA07E0D46 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
+		AA40F14774264C9A9FD752BF /* Foundation.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB3847182866417F9AE25511 /* ZeroConf-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZeroConf-Bridging-Header.h"; path = "cordova-plugin-zeroconf/ZeroConf-Bridging-Header.h"; sourceTree = "<group>"; };
+		BD32E4490F014787A8049492 /* PSWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSWebSocketServer.h; path = "cordova-plugin-websocket-server/PSWebSocketServer.h"; sourceTree = "<group>"; };
+		CB54A5C0A8264257B31DCA02 /* PSWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSWebSocket.h; path = "cordova-plugin-websocket-server/PSWebSocket.h"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+		ED80F0B3772744B697EF6CA0 /* libz.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = libz.tbd; sourceTree = "<group>"; };
+		F13AFBD7C7124205A508CCAC /* WebSocketServer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebSocketServer-Bridging-Header.h"; path = "cordova-plugin-websocket-server/WebSocketServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = DynoForce/config.xml; sourceTree = "<group>"; };
-		FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		A90047937817409EA07E0D46 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +135,11 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				61BDA4B656DD4FFEBCCFD5DF /* libPocketSocket.a in Frameworks */,
+				B1A25321BC33412EAD1BB772 /* Foundation.framework in Frameworks */,
+				C2D776F932BC4762A024EE84 /* CFNetwork.framework in Frameworks */,
+				A61F31B2F5E249F1912B2CF9 /* Security.framework in Frameworks */,
+				12CD1FD9BF624B82927C942F /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +212,11 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				487ABDF408844F54B7DE7155 /* libPocketSocket.a */,
+				AA40F14774264C9A9FD752BF /* Foundation.framework */,
+				3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */,
+				36F10857BE8542E3B1A69D33 /* Security.framework */,
+				ED80F0B3772744B697EF6CA0 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,6 +236,11 @@
 				AB3847182866417F9AE25511 /* ZeroConf-Bridging-Header.h */,
 				FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */,
 				A90047937817409EA07E0D46 /* CDVDevice.h */,
+				674CB84C45F7448EB77E388E /* WebSocketServer.swift */,
+				F13AFBD7C7124205A508CCAC /* WebSocketServer-Bridging-Header.h */,
+				CB54A5C0A8264257B31DCA02 /* PSWebSocket.h */,
+				BD32E4490F014787A8049492 /* PSWebSocketServer.h */,
+				1BA71C447B2C4D89BC7FDDA4 /* PSWebSocketTypes.h */,
 			);
 			name = Plugins;
 			path = DynoForce/Plugins;
@@ -402,6 +433,7 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				993C1E76DB894A1D9637DDDA /* ZeroConf.swift in Sources */,
 				11C14C612B934151A1544F38 /* CDVDevice.m in Sources */,
+				07211FA47EAE45E9A642DFFB /* WebSocketServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +464,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "DynoForce/DynoForce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DynoForce/Plugins/cordova-plugin-websocket-server\"",
+					"\"$(SRCROOT)/DynoForce/Plugins/cordova-plugin-zeroconf\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -444,9 +481,11 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gizmet.dynoforce;
 				PRODUCT_NAME = DynoForce;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DynoForce/Plugins/cordova-plugin-websocket-server/WebSocketServer-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -465,6 +504,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "DynoForce/DynoForce-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DynoForce/Plugins/cordova-plugin-websocket-server\"",
+					"\"$(SRCROOT)/DynoForce/Plugins/cordova-plugin-zeroconf\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -477,9 +521,11 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gizmet.dynoforce;
 				PRODUCT_NAME = DynoForce;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DynoForce/Plugins/cordova-plugin-websocket-server/WebSocketServer-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -15,6 +15,14 @@ module.exports = [
         "clobbers": [
             "device"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-websocket-server/www/wsserver.js",
+        "id": "cordova-plugin-websocket-server.WebSocketServer",
+        "pluginId": "cordova-plugin-websocket-server",
+        "clobbers": [
+            "cordova.plugins.wsserver"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -22,7 +30,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.2.0",
     "cordova-plugin-zeroconf": "1.0.1",
-    "cordova-plugin-device": "1.1.0"
+    "cordova-plugin-device": "1.1.0",
+    "cordova-plugin-websocket-server": "1.0.3"
 }
 // BOTTOM OF METADATA
 });
