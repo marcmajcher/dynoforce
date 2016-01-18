@@ -20,8 +20,8 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        StatusBar.overlaysWebView(false);
-        StatusBar.hide();
+        // StatusBar.overlaysWebView(false);
+        // StatusBar.hide();
         console.log("deviceready");
     }
 };
