@@ -218,19 +218,19 @@ import Foundation
             // prevent collision
             uuid = NSUUID().UUIDString
         }
+
         UUIDSockets[uuid] = webSocket
         socketsUUID[webSocket] = uuid
         
         let remoteAddr = IP(webSocket.remoteAddress)
         remoteAddresses[webSocket] = remoteAddr
-        
+
         let acceptedProtocol = getAcceptedProtocol(webSocket.URLRequest)
-        
         let httpFields = webSocket.URLRequest.allHTTPHeaderFields
-        
         let conn: NSDictionary = NSDictionary(objects: [uuid, remoteAddr, acceptedProtocol!, httpFields!], forKeys: ["uuid", "remoteAddr", "acceptedProtocol", "httpFields"])
         let status: NSDictionary = NSDictionary(objects: ["onOpen", conn], forKeys: ["action", "conn"])
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsDictionary: status as [NSObject : AnyObject])
+        
         pluginResult.setKeepCallbackAsBool(true)
         commandDelegate?.sendPluginResult(pluginResult, callbackId: listenerCallbackId)
     }

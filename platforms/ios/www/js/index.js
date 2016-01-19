@@ -25,6 +25,8 @@ document.addEventListener("deviceready", function() {
 */
 
 /* initialize button handlers and networking */
+var wss;
+
 function init() {
     'use strict';
     /* display splash screen on device ready and document initialized */
@@ -37,20 +39,22 @@ function init() {
     });
 
     $('#btn-host-game').click(function() {
-        var wss = startWebSocketServer();
+        wss = startWebSocketServer();
         console.log(wss);
         registerZeroConf();
     });
 
     $('#btn-join-game').click(function() {
         registerZeroConf();
+        wss.getInterfaces(function(ips) {
+            console.log("interfaces: ")
+            console.log(ips)
+        })
     });
 
-    /* test button */
-
     $('#btn-test').click(function() {
-        console.log('click');
-        alert('test');
+        alert("TEST");
+        console.log("TEST");
     });
 
     console.log('initialized');
@@ -77,8 +81,7 @@ function startWebSocketServer() {
         'onClose': function(conn) {
             console.log('A user disconnected from %s', conn.remoteAddr);
         },
-        'origins': ['file://'],
-        'protocols': ['my-protocol-v1', 'my-protocol-v2']
+        'protocols': ['json']
     });
 
     console.log('server ok');

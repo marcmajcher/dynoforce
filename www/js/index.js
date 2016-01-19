@@ -25,6 +25,8 @@ document.addEventListener("deviceready", function() {
 */
 
 /* initialize button handlers and networking */
+var wss;
+
 function init() {
     'use strict';
     /* display splash screen on device ready and document initialized */
@@ -37,20 +39,21 @@ function init() {
     });
 
     $('#btn-host-game').click(function() {
-        var wss = startWebSocketServer();
+        wss = startWebSocketServer();
         console.log(wss);
         registerZeroConf();
     });
 
     $('#btn-join-game').click(function() {
-        registerZeroConf();
+        wss.getInterfaces(function(ips) {
+            console.log("interfaces: ")
+            console.log(ips)
+        })
     });
 
-    /* test button */
-
     $('#btn-test').click(function() {
-        console.log('click');
-        alert('test');
+        alert("TEST");
+        console.log("TEST");
     });
 
     console.log('initialized');
@@ -77,8 +80,7 @@ function startWebSocketServer() {
         'onClose': function(conn) {
             console.log('A user disconnected from %s', conn.remoteAddr);
         },
-        'origins': ['file://'],
-        'protocols': ['my-protocol-v1', 'my-protocol-v2']
+        'protocols': ['json']
     });
 
     console.log('server ok');
@@ -96,12 +98,13 @@ function registerZeroConf() {
 
     var zc = cordova.plugins.zeroconf;
     zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
-        'id': 'DynoForce'
+        'id': 'DynoForce',
+        'role': 'Host'
     });
     zc.watch('_http._tcp.local', function(result) {
         var action = result.action;
         var service = result.service;
-        if (action === 'added' && service.txtRecord.id === 'DynoForce') {
+        if (action === 'added' && service.txtRecord.id === 'DynoForce' && service.txtRecord.role === 'Host') {
             console.log("ADDED:");
             console.log(service);
         } 

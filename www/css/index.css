@@ -64,19 +64,15 @@ h1 {
 .big-button {
     font-size: 18px;
     font-weight: bold;
+    margin: 15px;
 }
+
 
 #btn-test {
     position: absolute;
     bottom: 20px;
 }
 
-#status-text {
-    padding: 20px;
-    border: 1px solid black;
-    margin: 10px;
-    background-color: white;
-}
 
 .screen {
     display: none;
