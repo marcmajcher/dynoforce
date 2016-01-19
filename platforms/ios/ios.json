@@ -13,10 +13,13 @@
                             "count": 1
                         },
                         {
+<<<<<<< HEAD
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
                         },
                         {
+=======
+>>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
                             "xml": "<feature name=\"WebSocketServer\"><param name=\"ios-package\" value=\"WebSocketServer\" /></feature>",
                             "count": 1
                         }
@@ -32,9 +35,12 @@
         "cordova-plugin-zeroconf": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         },
+<<<<<<< HEAD
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         },
+=======
+>>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
         "cordova-plugin-websocket-server": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         }
@@ -50,6 +56,7 @@
             ]
         },
         {
+<<<<<<< HEAD
             "file": "plugins/cordova-plugin-device/www/device.js",
             "id": "cordova-plugin-device.device",
             "pluginId": "cordova-plugin-device",
@@ -58,6 +65,8 @@
             ]
         },
         {
+=======
+>>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
             "file": "plugins/cordova-plugin-websocket-server/www/wsserver.js",
             "id": "cordova-plugin-websocket-server.WebSocketServer",
             "pluginId": "cordova-plugin-websocket-server",
@@ -69,7 +78,10 @@
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.0",
         "cordova-plugin-zeroconf": "1.0.1",
+<<<<<<< HEAD
         "cordova-plugin-device": "1.1.0",
+=======
+>>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
         "cordova-plugin-websocket-server": "1.0.3"
     }
 }

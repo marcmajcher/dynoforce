@@ -29,7 +29,11 @@ body {
 
 /* Portrait layout (default) */
 .app {
+<<<<<<< HEAD
     /*background:url(../img/logo.png) no-repeat center top;*/ /* 170px x 200px */
+=======
+/*    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+>>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:10%;
