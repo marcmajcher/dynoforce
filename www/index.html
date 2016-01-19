@@ -12,15 +12,18 @@
     <body>
         <div class="app">
             <h1>DynoForce</h1>
-            <div>
-                <button id="btnadd">BEGIN</button>
-                <button id="btnserver">Start Head Server</button>
-                <button id="btntest">TEST</button>
+            <div class="screen screen-splash">
+                <button class="big-button" id="btn-splash">GO</button>
             </div>
-
+            <div class="screen screen-main">
+                <button class="big-button" id="btn-host-game">Start New Game</button>
+                <button class="big-button" id="btn-join-game">Join Game</button>
+            </div>
+            <hr>
         </div>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <button id="btn-test">Test</button>
     </body>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </html>

@@ -24,7 +24,6 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
@@ -53,51 +52,32 @@ body {
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
+    text-transform:uppercase;
+    font-size:36px;
+    font-weight:bold;
     margin:0px;
     overflow:visible;
     padding:0px;
     text-align:center;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+.big-button {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
+#btn-test {
+    position: absolute;
+    bottom: 20px;
 }
 
-.event.received {
-    background-color:#4B946A;
-    display:none;
+#status-text {
+    padding: 20px;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: white;
 }
 
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
-
-#btnserver {
+.screen {
     display: none;
 }
