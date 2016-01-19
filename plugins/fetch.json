@@ -15,7 +15,6 @@
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-device": {
         "source": {
             "type": "registry",
@@ -24,8 +23,6 @@
         "is_top_level": true,
         "variables": {}
     },
-=======
->>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
     "cordova-plugin-websocket-server": {
         "source": {
             "type": "registry",

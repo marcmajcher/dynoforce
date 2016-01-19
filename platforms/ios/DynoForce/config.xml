@@ -17,12 +17,9 @@
     <feature name="ZeroConf">
         <param name="ios-package" value="ZeroConf" />
     </feature>
-<<<<<<< HEAD
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-=======
->>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
     <feature name="WebSocketServer">
         <param name="ios-package" value="WebSocketServer" />
     </feature>

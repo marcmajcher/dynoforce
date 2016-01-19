@@ -9,7 +9,6 @@ module.exports = [
         ]
     },
     {
-<<<<<<< HEAD
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
         "pluginId": "cordova-plugin-device",
@@ -18,8 +17,6 @@ module.exports = [
         ]
     },
     {
-=======
->>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
         "file": "plugins/cordova-plugin-websocket-server/www/wsserver.js",
         "id": "cordova-plugin-websocket-server.WebSocketServer",
         "pluginId": "cordova-plugin-websocket-server",
@@ -33,10 +30,7 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.2.0",
     "cordova-plugin-zeroconf": "1.0.1",
-<<<<<<< HEAD
     "cordova-plugin-device": "1.1.0",
-=======
->>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
     "cordova-plugin-websocket-server": "1.0.3"
 }
 // BOTTOM OF METADATA

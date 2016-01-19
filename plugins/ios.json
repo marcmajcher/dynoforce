@@ -13,12 +13,9 @@
         "cordova-plugin-zeroconf": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         },
-<<<<<<< HEAD
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         },
-=======
->>>>>>> 9ac0af8d1e24dcc2a3075857f5561c3fb307a102
         "cordova-plugin-websocket-server": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
         }
