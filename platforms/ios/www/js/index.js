@@ -1,9 +1,12 @@
 
+ document.addEventListener("deviceready", function(){
+      console.log("device ready");
+      $(document).ready(init);
+ }, false);
+
+/* initialize button handlers and networking */
 function init() {
-    $('#btnserver').hide();
-
     $('#btnadd').click(function(){
-
         var zc = cordova.plugins.zeroconf;
         zc.register('_http._tcp.local.', 'DynoForce-'+device.model+'-'+device.uuid, 80, { 'id': 'DynoForce'});
         zc.watch('_http._tcp.local', function(result) {
@@ -25,13 +28,13 @@ function init() {
     });
 
     $('#btntest').click(function(){
+        console.log('click')
         alert('test');
     });
 
     $('#btnserver').click(function() {
-        alert('starting server')
+        console.log('starting server')
         var wsserver = cordova.plugins.wsserver;
-
 
         wsserver.start(1337, {
             'onStart' : function(addr, port) {
@@ -59,10 +62,9 @@ function init() {
             'protocols' : [ 'my-protocol-v1', 'my-protocol-v2' ] // optional. validates the 'Sec-WebSocket-Protocol' HTTP Header. 
         });
 
-        alert('server ok')
+        console.log('server ok')
     });
 
-
+    console.log('inited')
 }
 
-$(document).ready(init);
