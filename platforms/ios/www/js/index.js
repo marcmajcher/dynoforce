@@ -40,16 +40,11 @@ function init() {
 
     $('#btn-host-game').click(function() {
         wss = startWebSocketServer();
-        console.log(wss);
-        registerZeroConf();
+        registerZeroConf('host');
     });
 
     $('#btn-join-game').click(function() {
-        registerZeroConf();
-        wss.getInterfaces(function(ips) {
-            console.log("interfaces: ")
-            console.log(ips)
-        })
+        registerZeroConf('player');
     });
 
     $('#btn-test').click(function() {
@@ -68,6 +63,9 @@ function startWebSocketServer() {
     wsserver.start(1337, {
         'onStart': function(addr, port) {
             console.log('Listening on %s:%d', addr, port);
+            $('div.screen-main').hide();
+            $('#hosts').hide();
+            $('div.screen-game').show();
         },
         'onStop': function(addr, port) {
             console.log('Stopped listening on %s:%d', addr, port);
@@ -77,6 +75,10 @@ function startWebSocketServer() {
         },
         'onMessage': function(conn, msg) {
             console.log(conn, msg);
+            console.log("MSG");
+            var json = JSON.parse(msg);
+            console.log(json.message);
+            alert(json.message);
         },
         'onClose': function(conn) {
             console.log('A user disconnected from %s', conn.remoteAddr);
@@ -95,23 +97,39 @@ function startWebSocketServer() {
 // 'httpFields' : {...}
 // }
 
-function registerZeroConf() {
+function registerZeroConf(role) {
 
     var zc = cordova.plugins.zeroconf;
     zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
-        'id': 'DynoForce'
+        'id': 'DynoForce',
+        'role': role
     });
     zc.watch('_http._tcp.local', function(result) {
-        var action = result.action;
-        var service = result.service;
-        if (action === 'added' && service.txtRecord.id === 'DynoForce') {
-            console.log("ADDED:");
-            console.log(service);
-        } 
-        else if (action === 'removed') {
-            console.log("REMOVED: ");
-            console.log(service);
-        }
-    });
-}
+            var action = result.action;
+            var service = result.service;
+            if (action === 'added' && service.txtRecord.id === 'DynoForce' && service.txtRecord.role === 'host') {
+                console.log("ADDED:");
+                console.log(service);
 
+                if (role === 'player') {
+                    var ip = service.addresses[0];
+                    console.log('found host address: '+ip);
+                    var btn = $('<button>Join '+ip+'</button>').click((function(ip) {
+                            return function() {
+                                console.log(ip);
+                                ws = new WebSocket('ws://'+ip+':1337', ['json']);
+                                ws.onopen = function() {
+                                    message = JSON.stringify({'message': 'xyzzy 1234'});
+                                    ws.send(message);
+                                }
+                            };
+                        })(ip));
+                    $('#hosts').append(btn);
+                }
+            } 
+            else if (action === 'removed') {
+                console.log("REMOVED: ");
+                console.log(service);
+            }
+        });
+    }
