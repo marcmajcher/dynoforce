@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name dynoforceApp.controller:AboutCtrl
+ * @name dynoforceApp.controller:MainCtrl
  * @description
- * # AboutCtrl
+ * # MainCtrl
  * Controller of the dynoforceApp
  */
 angular.module('dynoforceApp')
-  .controller('AboutCtrl', function () {
+  .controller('SplashController', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

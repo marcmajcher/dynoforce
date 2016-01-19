@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name dynoforceApp.controller:MainCtrl
+ * @name dynoforceApp.controller:AboutCtrl
  * @description
- * # MainCtrl
+ * # AboutCtrl
  * Controller of the dynoforceApp
  */
 angular.module('dynoforceApp')
-  .controller('MainCtrl', function () {
+  .controller('MainController', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

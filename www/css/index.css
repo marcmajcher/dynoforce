@@ -3,6 +3,15 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+
+@font-face {
+  font-family: 'PsiphoonBB';
+  src: url('../fonts/PsiphoonBB.eot?#iefix') format('embedded-opentype'),  url('../fonts/PsiphoonBB.woff') format('woff'), url('../fonts/PsiphoonBB.ttf')  format('truetype'), url('../fonts/PsiphoonBB.svg#PsiphoonBB') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -52,6 +61,7 @@ body {
 }
 
 h1 {
+    font-family: 'PsiphoonBB';
     text-transform:uppercase;
     font-size:36px;
     font-weight:bold;
@@ -59,6 +69,7 @@ h1 {
     overflow:visible;
     padding:0px;
     text-align:center;
+    color: red;
 }
 
 .big-button {
