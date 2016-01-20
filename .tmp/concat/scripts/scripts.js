@@ -35,14 +35,14 @@
     redirectTo: '/'
   });
 }])
- .value('socketPort', { value: 1337})
- .factory('webSocketServer', function() {
-  console.log('starting server');
+ .value('socketPort', 1337)
+ .factory('webSocketServer', ['socketPort', function(socketPort) {
 
   var service = {};
   service.wsserver = cordova.plugins.wsserver;
   service.start = function() {
-    this.wsserver.start(1337, {
+    console.log('starting server');
+    this.wsserver.start(socketPort, {
       'onStart': function(addr, port) {
         console.log('Listening on %s:%d', addr, port);
       },
@@ -64,8 +64,8 @@
       },
       'protocols': ['json']
     });
+    console.log('server ok');
   };
-  console.log('server ok');
   return service;
 // conn: {
 // 'uuid' : '8e176b14-a1af-70a7-3e3d-8b341977a16e',
@@ -73,9 +73,9 @@
 // 'acceptedProtocol' : 'my-protocol-v1',
 // 'httpFields' : {...}
 // }
-})
-.factory('zeroConf', ["role", function(role) {
-
+}])
+.factory('zeroConf', function() {
+var role;
   var zc = cordova.plugins.zeroconf;
   zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
     'id': 'DynoForce',
@@ -110,7 +110,7 @@
     }
   });
 
-}]);
+});
 
 'use strict';
 
