@@ -8703,13 +8703,71 @@ button.close {
     display: none !important;
   }
 }
+/* Imported from cordova template */
+/* line 8, ../../app/styles/main.scss */
+* {
+  -webkit-tap-highlight-color: transparent;
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* line 12, ../../app/styles/main.scss */
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-color: #ffffff;
+  font-family: 'Roboto', 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Portrait layout (default) */
+/* line 28, ../../app/styles/main.scss */
+.phonegap-app {
+  /*background:url(../img/logo.png) no-repeat center top;*/
+  /* 170px x 200px */
+  position: absolute;
+  /* position in the center of the screen */
+  left: 50%;
+  top: 10%;
+  height: 50px;
+  /* text area height */
+  width: 225px;
+  /* text area width */
+  text-align: center;
+  padding: 180px 0px 0px 0px;
+  /* image height is 200px (bottom 20px are overlapped with text) */
+  margin: -115px 0px 0px -112px;
+  /* offset vertical: half of image height and text area height */
+  /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1 / 1) and (min-width: 400px) {
+  /* line 43, ../../app/styles/main.scss */
+  .phonegap-app {
+    background-position: left center;
+    padding: 75px 0px 75px 170px;
+    /* padding-top + padding-bottom + text area = image height */
+    margin: -90px 0px 0px -198px;
+    /* offset vertical: half of image height */
+    /* offset horizontal: half of image width and text area width */
+  }
+}
+/* */
 @font-face {
   font-family: 'PsiphoonBB';
   src: url("./fonts/PsiphoonBB.eot?#iefix") format("embedded-opentype"), url("./fonts/PsiphoonBB.woff") format("woff"), url("./fonts/PsiphoonBB.ttf") format("truetype"), url("./fonts/PsiphoonBB.svg#PsiphoonBB") format("svg");
   font-weight: normal;
   font-style: normal;
 }
-/* line 13, ../../app/styles/main.scss */
+/* line 60, ../../app/styles/main.scss */
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -8717,13 +8775,8 @@ button.close {
   padding: 0.2em 0;
 }
 
-/* line 20, ../../app/styles/main.scss */
-body {
-  padding: 0;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
-/* line 25, ../../app/styles/main.scss */
+/* line 69, ../../app/styles/main.scss */
 .header,
 .marketing,
 .footer {
@@ -8732,13 +8785,13 @@ body {
 }
 
 /* Custom page header */
-/* line 33, ../../app/styles/main.scss */
+/* line 77, ../../app/styles/main.scss */
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
   /* Make the masthead heading the same height as the navigation */
 }
-/* line 38, ../../app/styles/main.scss */
+/* line 82, ../../app/styles/main.scss */
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
@@ -8747,37 +8800,37 @@ body {
 }
 
 /* Custom page footer */
-/* line 47, ../../app/styles/main.scss */
+/* line 91, ../../app/styles/main.scss */
 .footer {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
 
-/* line 53, ../../app/styles/main.scss */
+/* line 97, ../../app/styles/main.scss */
 .container-narrow > hr {
   margin: 30px 0;
 }
 
 /* Main marketing message and sign up button */
-/* line 58, ../../app/styles/main.scss */
+/* line 102, ../../app/styles/main.scss */
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
-/* line 62, ../../app/styles/main.scss */
+/* line 106, ../../app/styles/main.scss */
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
   margin-top: 20px;
 }
-/* line 68, ../../app/styles/main.scss */
+/* line 112, ../../app/styles/main.scss */
 .jumbotron h1 {
   font-family: 'PsiphoonBB';
   font-size: 36px;
 }
 
-/* line 74, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 .image-splash {
   width: 300px;
   height: 300px;
@@ -8785,13 +8838,13 @@ body {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 82, ../../app/styles/main.scss */
+  /* line 126, ../../app/styles/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 87, ../../app/styles/main.scss */
+  /* line 131, ../../app/styles/main.scss */
   .header,
   .marketing,
   .footer {
@@ -8800,13 +8853,13 @@ body {
   }
 
   /* Space out the masthead */
-  /* line 94, ../../app/styles/main.scss */
+  /* line 138, ../../app/styles/main.scss */
   .header {
     margin-bottom: 30px;
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 98, ../../app/styles/main.scss */
+  /* line 142, ../../app/styles/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

@@ -2,7 +2,7 @@ angular.module('dynoforceApp').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/main.html',
-    "<p>This is the main view.</p> <div class=\"screen screen-main\"> <button class=\"big-button\" id=\"btn-host-game\">Start New Game</button> <button class=\"big-button\" id=\"btn-join-game\">Find a Game</button> </div> <div class=\"screen screen-game\"> Game Started! </div> <hr> <div id=\"hosts\"> </div>"
+    "<button class=\"btn btn-lg\" ng-click=\"doTheThing()\">Start New Game</button> <button class=\"btn btn-lg\">Find a Game</button>"
   );
 
 

@@ -3,6 +3,53 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+/* Imported from cordova template */
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: #ffffff;
+
+    font-family: 'Roboto', 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+/* Portrait layout (default) */
+.phonegap-app {
+    /*background:url(../img/logo.png) no-repeat center top;*/ /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:10%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .phonegap-app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+/* */
+
 @font-face {
   font-family: 'PsiphoonBB';
   src: url('./fonts/PsiphoonBB.eot?#iefix') format('embedded-opentype'),  url('./fonts/PsiphoonBB.woff') format('woff'), url('./fonts/PsiphoonBB.ttf')  format('truetype'), url('./fonts/PsiphoonBB.svg#PsiphoonBB') format('svg');
@@ -17,9 +64,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   padding: 0.2em 0;
 }
 
-body {
-  padding: 0;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -99,3 +143,4 @@ body {
     border-bottom: 0;
   }
 }
+

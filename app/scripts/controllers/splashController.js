@@ -9,9 +9,4 @@
  */
 angular.module('dynoforceApp')
   .controller('SplashController', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
   });

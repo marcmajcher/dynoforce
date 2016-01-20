@@ -8,10 +8,10 @@
  * Controller of the dynoforceApp
  */
 angular.module('dynoforceApp')
-  .controller('MainController', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainController', ['$scope', 'webSocketServer', function ($scope, webSocketServer) {
+  	this.testJunk = 'foo';
+
+  	$scope.doTheThing = function() {
+  		webSocketServer.start();
+  	};
+  }]);
