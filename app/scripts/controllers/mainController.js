@@ -8,10 +8,11 @@
  * Controller of the dynoforceApp
  */
 angular.module('dynoforceApp')
-  .controller('MainController', ['$scope', 'webSocketServer', function ($scope, webSocketServer) {
-  	this.testJunk = 'foo';
+  .controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 
+  	function ($scope, webSocketServer, zeroConf) {
 
-  	$scope.doTheThing = function() {
-  		webSocketServer.start();
-  	};
+	  	$scope.hostGame = function() {
+	  		webSocketServer.start();
+	  		zeroConf.register('host');
+	  	};
   }]);

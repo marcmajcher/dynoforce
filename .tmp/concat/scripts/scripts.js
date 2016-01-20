@@ -75,41 +75,51 @@
 // }
 }])
 .factory('zeroConf', function() {
-var role;
-  var zc = cordova.plugins.zeroconf;
-  zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
-    'id': 'DynoForce',
-    'role': role
-  });
-  zc.watch('_http._tcp.local', function(result) {
-    var action = result.action;
-    var service = result.service;
-    if (action === 'added' && service.txtRecord.id === 'DynoForce' && service.txtRecord.role === 'host') {
-      console.log('ADDED:');
-      console.log(service);
 
-      if (role === 'player') {
-        var ip = service.addresses[0];
-        console.log('found host address: '+ip);
-        // var btn = $('<button>Join '+ip+'</button>').click((function(ip) {
-        //   return function() {
-        //     console.log(ip);
-        //     ws = new WebSocket('ws://'+ip+':1337', ['json']);
-        //     ws.onopen = function() {
-        //       message = JSON.stringify({'message': 'xyzzy 1234'});
-        //       ws.send(message);
-        //     }
-        //   };
-        // })(ip));
-        // $('#hosts').append(btn);
-      }
-    } 
-    else if (action === 'removed') {
-      console.log('REMOVED: ');
-      console.log(service);
+  var service = {};
+  service.role = '';
+  service.zc = cordova.plugins.zeroconf;
+
+  service.register = function(role) {
+    if (role !== 'host' && role !== 'player') {
+      throw new Error('zeroConf - unknown role: '+role);
     }
-  });
+    this.role = role;
 
+    this.zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
+      'id': 'DynoForce',
+      'role': role
+    });
+
+    service.zc.watch('_http._tcp.local', function(result) {
+      var action = result.action;
+      var service = result.service;
+      if (action === 'added' && service.txtRecord.id === 'DynoForce' && service.txtRecord.role === 'host') {
+        console.log('ADDED:');
+        console.log(service);
+
+        if (role === 'player') {
+          var ip = service.addresses[0];
+          console.log('found host address: '+ip);
+          // var btn = $('<button>Join '+ip+'</button>').click((function(ip) {
+          //   return function() {
+          //     console.log(ip);
+          //     ws = new WebSocket('ws://'+ip+':1337', ['json']);
+          //     ws.onopen = function() {
+          //       message = JSON.stringify({'message': 'xyzzy 1234'});
+          //       ws.send(message);
+          //     }
+          //   };
+          // })(ip));
+          // $('#hosts').append(btn);
+        }
+      } 
+      else if (action === 'removed') {
+        console.log('REMOVED: ');
+        console.log(service);
+      }
+    });
+  };
 });
 
 'use strict';
@@ -135,19 +145,20 @@ angular.module('dynoforceApp')
  * Controller of the dynoforceApp
  */
 angular.module('dynoforceApp')
-  .controller('MainController', ['$scope', 'webSocketServer', function ($scope, webSocketServer) {
-  	this.testJunk = 'foo';
+  .controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 
+  	function ($scope, webSocketServer, zeroConf) {
 
-  	$scope.doTheThing = function() {
-  		webSocketServer.start();
-  	};
+	  	$scope.hostGame = function() {
+	  		webSocketServer.start();
+	  		zeroConf.register('host');
+	  	};
   }]);
 
 angular.module('dynoforceApp').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/main.html',
-    "<button class=\"btn btn-lg\" ng-click=\"doTheThing()\">Start New Game</button> <button class=\"btn btn-lg\">Find a Game</button>"
+    "<button class=\"btn btn-lg\" ng-click=\"hostGame()\">Start New Game</button> <button class=\"btn btn-lg\">Find a Game</button>"
   );
 
 
