@@ -3,10 +3,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-
 @font-face {
   font-family: 'PsiphoonBB';
-  src: url('../fonts/PsiphoonBB.eot?#iefix') format('embedded-opentype'),  url('../fonts/PsiphoonBB.woff') format('woff'), url('../fonts/PsiphoonBB.ttf')  format('truetype'), url('../fonts/PsiphoonBB.svg#PsiphoonBB') format('svg');
+  src: url('./fonts/PsiphoonBB.eot?#iefix') format('embedded-opentype'),  url('./fonts/PsiphoonBB.woff') format('woff'), url('./fonts/PsiphoonBB.ttf')  format('truetype'), url('./fonts/PsiphoonBB.svg#PsiphoonBB') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -68,9 +67,15 @@ body {
 
   h1 {
     font-family: 'PsiphoonBB';
-    font-size: 48px;
+    font-size: 36px;
   }
 }
+
+.image-splash {
+  width: 300px;
+  height: 300px;
+}
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

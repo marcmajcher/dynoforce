@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: MainController', function () {
+describe('Controller: SplashController', function () {
 
   // load the controller's module
   beforeEach(module('dynoforceApp'));
 
-  var MainController,
+  var SplashController,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainController = $controller('MainController', {
+    SplashController = $controller('SplashController', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainController.awesomeThings.length).toBe(3);
+    expect(SplashController.awesomeThings.length).toBe(3);
   });
 });
