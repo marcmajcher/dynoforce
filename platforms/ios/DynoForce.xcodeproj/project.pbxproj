@@ -47,6 +47,7 @@
 		B1A25321BC33412EAD1BB772 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40F14774264C9A9FD752BF /* Foundation.framework */; };
 		C2D776F932BC4762A024EE84 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+		A19392B45CB841E8AA4F125F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62965072343D4F009E49395E /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,8 @@
 		F13AFBD7C7124205A508CCAC /* WebSocketServer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebSocketServer-Bridging-Header.h"; path = "cordova-plugin-websocket-server/WebSocketServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = DynoForce/config.xml; sourceTree = "<group>"; };
 		FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
+		62965072343D4F009E49395E /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		D0913082F92C47B1AD9C5F86 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +244,8 @@
 				CB54A5C0A8264257B31DCA02 /* PSWebSocket.h */,
 				BD32E4490F014787A8049492 /* PSWebSocketServer.h */,
 				1BA71C447B2C4D89BC7FDDA4 /* PSWebSocketTypes.h */,
+				62965072343D4F009E49395E /* CDVStatusBar.m */,
+				D0913082F92C47B1AD9C5F86 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = DynoForce/Plugins;
@@ -434,6 +439,7 @@
 				993C1E76DB894A1D9637DDDA /* ZeroConf.swift in Sources */,
 				11C14C612B934151A1544F38 /* CDVDevice.m in Sources */,
 				07211FA47EAE45E9A642DFFB /* WebSocketServer.swift in Sources */,
+				A19392B45CB841E8AA4F125F /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

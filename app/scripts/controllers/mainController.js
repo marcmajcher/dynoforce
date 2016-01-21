@@ -12,8 +12,10 @@ angular.module('dynoforceApp')
   	function ($scope, webSocketServer, zeroConf) {
 
   		$scope.hosts = [];
-  		$scope.hosting = false;
-  		$scope.finding = false;
+  		$scope.state = {
+  			hosting: false,
+  			finding: false
+		};
   		$scope.host = {};
 
   		/* Game hosting methods */
@@ -21,13 +23,14 @@ angular.module('dynoforceApp')
 	  		webSocketServer.start($scope.onHostStart);
 	  		zeroConf.register('host');
 	  		// add visual indication
-	  		$scope.hosting = true;
+	  		$scope.state.hosting = true;
 
 	  	};
 
 	  	$scope.cancelHost = function() {
 	  		webSocketServer.stop();
-	  		$scope.hosting = false;
+	  		$scope.state.hosting = false;
+	  		$scope.host = {};
 	  	};
 
 	  	$scope.onHostStart = function(addr, port) {
@@ -36,7 +39,10 @@ angular.module('dynoforceApp')
 	  	};
 
 	  	$scope.findGames = function() {
+	  		$scope.state.finding = true;
+	  	};
 
-	  		$scope.finding = true;
+	  	$scope.cancelFind = function () {
+	  		$scope.state.finding = false;
 	  	};
   }]);

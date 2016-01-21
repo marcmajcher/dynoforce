@@ -18,6 +18,9 @@
         },
         "cordova-plugin-websocket-server": {
             "PACKAGE_NAME": "com.gizmet.dynoforce"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.gizmet.dynoforce"
         }
     },
     "dependent_plugins": {}

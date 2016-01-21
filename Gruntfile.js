@@ -464,6 +464,9 @@ module.exports = function (grunt) {
     exec: {
       emulate: {
         command: 'cordova emulate ios'
+      },
+      build: {
+        command: 'cordova build'
       }
     }
   });
@@ -513,7 +516,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'exec:build'
   ]);
 
   grunt.registerTask('default', [

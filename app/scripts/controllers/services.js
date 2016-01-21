@@ -2,23 +2,17 @@
 /* global cordova */
 /* global device */
 
-/**
- * @ngdoc overview
- * @name dynoforceApp
- * @description
- * # dynoforceApp
- *
- * Main module of the application.
- */
  angular.module('dynoforceApp')
  .value('socketPort', 1337)
  .factory('webSocketServer', ['socketPort', function(socketPort) {
 
-  var service = {};
-  service.hostIp = null;
-  service.hostPort = null;
-  service.wsserver = cordova.plugins.wsserver;
+  var service = {
+    hostAddr: null,
+    hostPort: null
+  };
 
+  service.wsserver = cordova.plugins.wsserver;
+  
   /* Start a websocket server to host a game on the default port */
   service.start = function(onStart) {
     console.log('starting server');
@@ -26,14 +20,14 @@
 
     this.wsserver.start(socketPort, {
       'onStart': function(addr, port) {
-      	self.hostIp = addr;
+      	self.hostAddr = addr;
       	self.hostPort = port;
       	onStart(addr, port);
         console.log('Listening on %s:%d', addr, port);
       },
       'onStop': function(addr, port) {
         console.log('Stopped listening on %s:%d', addr, port);
-        self.hostIp = null;
+        self.hostAddr = null;
         self.hostPort = null;
       },
       'onOpen': function(conn) {
@@ -134,4 +128,6 @@
       }
     });
   };
+
+  return service;
 });
