@@ -19,7 +19,7 @@ angular.module('dynoforceApp')
   			finding: false
 		};
   		$scope.host = {
-  			name: ''
+  			name: '..'
   		};
 
   		/* Game hosting methods */
@@ -64,8 +64,8 @@ angular.module('dynoforceApp')
 	  	};
 
 	  	$scope.joinHost = function(addr) {
-	  		console.log('joining :');
-	  		console.log(addr);
+	  		console.log('joining: '+addr);
+	  		webSocketServer.joinHost(addr);
 	  	};
 
 	  	$scope.cancelFind = function () {

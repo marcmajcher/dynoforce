@@ -5,7 +5,11 @@
 <div class="main-hosting" ng-if="state.hosting">
 	Hosting game {{host.name}}. Waiting for players...
 	<div class="player-list">
-		...
+		<ul>
+		<li ng-repeat="player in host.players">
+			{{player}}
+		</li>
+		</ul>
 	</div>
 	<div>
 		<button class="btn btn-lg" ng-click="cancelHost()">Cancel</button>
@@ -13,12 +17,13 @@
 </div>
 <div class="main-finding" ng-if="state.finding">
 Looking for a game...
-	<h2>Available Teams:</h2>
+	<h2>Available Hosts:</h2>
 	<div>
 		<ul>
 			<li ng-repeat="host in data.hosts">
+				{{host.name}}
 				<button class="btn btn-lg" ng-click="joinHost(host.addr)">
-					Join Host: {{host.name}} at {{host.addr}}
+					JOIN
 				</button>
 			</li>
 		</ul>
