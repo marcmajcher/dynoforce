@@ -3,51 +3,54 @@
 /* global device */
 
 angular.module('dynoforceApp')
-.constant('socketPort', 1337)
-.factory('webSocketServer', ['socketPort', function(socketPort) {
+  .constant('socketPort', 1337)
+  .factory('webSocketServer', ['socketPort', function(socketPort) {
 
-  return {
-    wsserver: cordova.plugins.wsserver,
+    return {
+      wsserver: cordova.plugins.wsserver,
 
-    /* host-facing methods */
+      /* host-facing methods */
 
-    /* Start a websocket server to host a game on the default port */
-    start: function(events) {
-      console.log('starting server');
+      /* Start a websocket server to host a game on the default port */
+      start: function(events) {
+        console.log('starting server');
 
-      events.protocols = ['json'];
-      this.wsserver.start(socketPort, events);
-    },
+        events.protocols = ['json'];
+        this.wsserver.start(socketPort, events);
+      },
 
-    stop: function() {
-      this.wsserver.stop();
-    },
+      stop: function() {
+        this.wsserver.stop();
+      },
 
-    sendToPlayer: function(uuid, message) {
-      this.wsserver.send({
-        'uuid': uuid
-      }, message);
-    },
+      sendToPlayer: function(uuid, message) {
+        this.wsserver.send({
+          'uuid': uuid
+        }, message);
+      },
 
-    removePlayer: function(uuid) {
-      this.wsserver.close({
-        'uuid': uuid
-      });
-    },
-
-    /* player-facing methods */
-
-    joinHost: function(addr) {
-      console.log('joinHost: ' + addr);
-      var ws = new WebSocket('ws://' + addr + ':' + socketPort, ['json']);
-      ws.onopen = function() {
-        var message = JSON.stringify({
-          'message': 'connect'
+      removePlayer: function(uuid) {
+        this.wsserver.close({
+          'uuid': uuid
         });
-        ws.send(message);
-      };
-    }
-  };
+      },
+
+      /* player-facing methods */
+
+      joinHost: function(addr, pilot) {
+        console.log('joinHost: ' + addr);
+        var ws = new WebSocket('ws://' + addr + ':' + socketPort, ['json']);
+        ws.onopen = function() {
+          var message = JSON.stringify({
+            'message': 'connect',
+            'args': {
+              'pilot': pilot
+            }
+          });
+          ws.send(message);
+        };
+      }
+    };
 
     // conn: {
     // 'uuid' : '8e176b14-a1af-70a7-3e3d-8b341977a16e',
@@ -66,40 +69,57 @@ angular.module('dynoforceApp')
     // websocket.close(); //close method
 
   }])
-.factory('zeroConf', [function() {
+  .factory('zeroConf', [function() {
 
-  return {
-    zc:  cordova.plugins.zeroconf,
+    return {
+      zc: cordova.plugins.zeroconf,
+      stopper: undefined,
 
-    /* Register a game server host on the local network. */
-    registerHost: function(mechName, watcher) {
-      this._register({id: 'DynoForce', role: 'host', mech: mechName}, watcher);
-    },
+      /* Register a game server host on the local network. */
+      registerHost: function(mechName, watcher, stopper) {
+        this._register({
+          id: 'DynoForce',
+          role: 'host',
+          mech: mechName
+        }, watcher);
+        this.stopper = stopper;
+      },
 
-    /* Register as a potential player on the local network. */
-    registerPlayer: function(pilotName, watcher) {
-      this._register({id: 'DynoForce', role: 'player', pilot: pilotName}, watcher);
-    },
+      /* Register as a potential player on the local network. */
+      registerPlayer: function(pilotName, watcher, stopper) {
+        this._register({
+          id: 'DynoForce',
+          role: 'player',
+          pilot: pilotName
+        }, watcher);
+        this.stopper = stopper;
+      },
 
-    _register: function(data, watcher) {
-      this.zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, data);
+      _register: function(data, watcher) {
+        this.zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, data);
+        var self = this;
 
-      this.zc.watch('_http._tcp.local', function(result) {
-        var action = result.action;
-        var text = result.service.txtRecord;
+        this.zc.watch('_http._tcp.local', function(result) {
+          var action = result.action;
+          var text = result.service.txtRecord;
 
-        if (action === 'added' && text.id === 'DynoForce' && text.role === 'host') {
-          watcher(result.service);
-        } 
-        else if (action === 'removed') {
-          console.log('REMOVED: ');
-          console.log(result.service);
-        }
-      });
-    },
+          console.log('in _register, stopper: ');
+          console.log(self.stopper);
 
-    stop: function() {
-      this.zc.stop();
-    }
-  };
-}]);
+          if (action === 'added' && text.id === 'DynoForce' && text.role === 'host') {
+            watcher(result.service);
+          }
+          else if (action === 'removed') {
+            console.log('REMOVED: ');
+            console.log(result.service);
+            console.log(self.stopper);
+            self.stopper(result.service);
+          }
+        });
+      },
+
+      stop: function() {
+        this.zc.stop();
+      }
+    };
+  }]);
