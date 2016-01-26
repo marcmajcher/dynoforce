@@ -13,8 +13,6 @@ angular.module('dynoforceApp')
 
       /* Start a websocket server to host a game on the default port */
       start: function(events) {
-        console.log('starting server');
-
         events.protocols = ['json'];
         this.wsserver.start(socketPort, events);
       },
@@ -51,23 +49,6 @@ angular.module('dynoforceApp')
         };
       }
     };
-
-    // conn: {
-    // 'uuid' : '8e176b14-a1af-70a7-3e3d-8b341977a16e',
-    // 'remoteAddr' : '192.168.1.10',
-    // 'acceptedProtocol' : 'my-protocol-v1',
-    // 'httpFields' : {...}
-    // }
-
-    //create a new WebSocket object.
-    // websocket = new WebSocket('ws://localhost:9000/daemon.php'); 
-    // websocket.onopen = function(evt) { /* do stuff */ }; //on open event
-    // websocket.onclose = function(evt) { /* do stuff */ }; //on close event
-    // websocket.onmessage = function(evt) { /* do stuff */ }; //on message event
-    // websocket.onerror = function(evt) { /* do stuff */ }; //on error event
-    // websocket.send(message); //send method
-    // websocket.close(); //close method
-
   }])
   .factory('zeroConf', [function() {
 
@@ -115,6 +96,7 @@ angular.module('dynoforceApp')
       stop: function() {
         this.zc.unwatch('_http._tcp.local.');
         this.zc.stop();
+        this.zc = cordova.plugins.zeroconf;
       }
     };
   }]);

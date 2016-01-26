@@ -1,0 +1,39 @@
+* Start app on emulator (E)  [ grunt emulate ]
+* Start app on device (D)    [ from xcode -> build and run on device ]
+* Hit 'GO' on both apps
+
+* Hit 'start new game' on D
+	- should go to hosting screen with mech name and waiting message
+* Hit 'cancel' on D
+	- should go back to main screen
+* Hit 'start new game' on D
+	- should go to same screen as before
+* Hit 'find a game' on E
+	- should go to finding screen with D host name available
+* Hit 'cancel' on D
+	- D should return to main screen
+	- E should remove D host name from list
+* Hit 'start new game' on D
+	- D should go hosting screen
+	- E should add D host to list
+* Hit 'join' on D host's entry on the E available host list
+	- D should add E's pilot name to the connecting list
+	- E 'join' button should become 'cancel'
+* Hit 'cancel' on E
+	- E 'cancel' button should become 'join'
+	- D should remove E from connected list
+* Hit 'join' on E again, then 'cancel' again
+	- should behave same as before
+* Hit 'join' then return' on E
+	- E should return to main screen
+	- D should add, then remove E from connected list
+* Hit 'find a game' on E
+	- E join list should be as before, with 'join' buttons available
+* Hit 'return' on E
+	- E should return to main screen
+* Hit 'cancel' on D
+	- D should return to main screen
+
+* Hit 'start a new game' button on E
+	- E should go to hosting screen with name and waiting message
+	X D should remain on main screen

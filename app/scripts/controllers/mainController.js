@@ -23,20 +23,14 @@ angular.module('dynoforceApp')
 					},
 					onOpen: function(conn) {
 						console.log('A user connected from %s', conn.remoteAddr);
-						console.log(conn);
 					},
 					onMessage: function(conn, msg) {
 						var json = JSON.parse(msg);
-						console.log('Message: ' + json.message);
-						console.log(conn);
-						console.log(json);
 						if (json.message === 'connect') {
 							gd.foundPlayers[conn.remoteAddr] = {
 								addr: conn.remoteAddr,
 								name: json.args.pilot
 							};
-							console.log('ADDING PLAYER:');
-							console.log(gd.foundPlayers);
 							$scope.$apply();
 						}
 					},
@@ -87,8 +81,6 @@ angular.module('dynoforceApp')
 					},
 					function(service) {
 						/* stopper */
-						console.log('removing host: ' + service.name);
-						console.log(service);
 						delete gd.foundHosts[service.name];
 						$scope.$apply();
 					}
@@ -101,6 +93,10 @@ angular.module('dynoforceApp')
 					$scope.setGameState(gameState.JOINING);
 				});
 			};
+
+			// websocket.onclose = function(evt) { /* do stuff */ }; //on close event
+			// websocket.onmessage = function(evt) { /* do stuff */ }; //on message event
+			// websocket.onerror = function(evt) { /* do stuff */ }; //on error event
 
 			$scope.unjoinHost = function() {
 				if (gd.webSocket !== undefined) {
