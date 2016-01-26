@@ -9,7 +9,7 @@ angular.module('dynoforceApp')
 			/* Game hosting methods */
 
 			$scope.hostGame = function() {
-				gd.foundPlayers = [];
+				gd.foundPlayers = {};
 
 				var serverCallbacks = {
 					onStart: function(addr, port) {
@@ -19,6 +19,7 @@ angular.module('dynoforceApp')
 					},
 					onStop: function(addr, port) {
 						console.log('Stopped listening on %s:%d', addr, port);
+						gd.state = gameState.IDLE;
 					},
 					onOpen: function(conn) {
 						console.log('A user connected from %s', conn.remoteAddr);
@@ -28,87 +29,92 @@ angular.module('dynoforceApp')
 						var json = JSON.parse(msg);
 						console.log('Message: ' + json.message);
 						console.log(conn);
-						console.log(msg);
-						alert('Message: ' + json.message);
+						console.log(json);
 						if (json.message === 'connect') {
-							gd.foundPlayers.push({
-								uuid: conn.uuid,
+							gd.foundPlayers[conn.remoteAddr] = {
 								addr: conn.remoteAddr,
 								name: json.args.pilot
-							});
+							};
+							console.log('ADDING PLAYER:');
+							console.log(gd.foundPlayers);
 							$scope.$apply();
 						}
 					},
 					onClose: function(conn) {
 						console.log('A user disconnected from %s', conn.remoteAddr);
+						delete gd.foundPlayers[conn.remoteAddr];
+						$scope.$apply();
 					}
 				};
 
 				webSocketServer.start(serverCallbacks);
 
-				zeroConf.registerHost(gd.hostName, function(service) {
-					console.log('ZC Hosting game: ' + service.txtRecord.mech);
-					console.log(service);
-					gd.state = gameState.HOSTING;
-					$scope.$apply();
-				});
+				zeroConf.registerHost(gd.hostName,
+					function(service) {
+						/* watcher */
+						console.log('ZC Hosting game: ' + service.txtRecord.mech);
+						console.log(service);
+						$scope.setGameState(gameState.HOSTING);
+					},
+					function() {});
 			};
 
-			$scope.cancelHost = function() {
+			$scope.stopHost = function() {
 				webSocketServer.stop();
 				zeroConf.stop();
-				gd.state = gameState.IDLE;
-				gd.foundPlayers = [];
+				$scope.setGameState(gameState.IDLE);
+				gd.foundPlayers = {};
 			};
 
 			/* Game joining methods */
 
 			$scope.findGames = function() {
-				gd.state = gameState.FINDING;
-				gd.foundHosts = [];
+				$scope.setGameState(gameState.FINDING);
+				gd.foundHosts = {};
 
 				zeroConf.registerPlayer(gd.playerName,
 					function(service) {
 						/* watcher */
-						console.log('Player ' + service.txtRecord.pilot + ' adding:');
-						console.log(service);
-
 						var hostAddr = service.addresses[0];
-						console.log('found host address: ' + hostAddr + ' : ' + service.txtRecord.mech);
-						gd.foundHosts.push({
+						console.log('Player ' + gd.playerName + ' adding ' + hostAddr + ' : ' + service.txtRecord.mech);
+
+						gd.foundHosts[service.name] = {
 							addr: hostAddr,
 							name: service.txtRecord.mech,
 							id: service.name
-						});
+						};
 						$scope.$apply();
 					},
 					function(service) {
 						/* stopper */
-						var index = -1;
-						for (var i = 0; i < gd.foundHosts.length; i++) {
-							if (gd.foundHosts[i].name === service.name) {
-								console.log('REMOVING');
-								index = i;
-								break;
-							}
-						}
-						if (index > -1) {
-							gd.foundHosts.splice(index, 1);
-							$scope.$apply();
-						}
+						console.log('removing host: ' + service.name);
+						console.log(service);
+						delete gd.foundHosts[service.name];
+						$scope.$apply();
 					}
 				);
 			};
 
 			$scope.joinHost = function(addr) {
-				console.log('joining: ' + addr);
-				webSocketServer.joinHost(addr, gd.playerName);
+				webSocketServer.joinHost(addr, gd.playerName, function(ws) {
+					gd.webSocket = ws;
+					$scope.setGameState(gameState.JOINING);
+				});
+			};
+
+			$scope.unjoinHost = function() {
+				if (gd.webSocket !== undefined) {
+					gd.webSocket.close();
+				}
+				gd.webSocket = undefined;
+				$scope.setGameState(gameState.FINDING);
 			};
 
 			$scope.cancelFind = function() {
+				$scope.unjoinHost();
 				zeroConf.stop();
-				gd.state = gameState.IDLE;
-				gd.foundHosts = [];
+				$scope.setGameState(gameState.IDLE);
+				gd.foundHosts = {};
 			};
 		}
 	]);

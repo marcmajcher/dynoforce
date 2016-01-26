@@ -37,8 +37,7 @@ angular.module('dynoforceApp')
 
       /* player-facing methods */
 
-      joinHost: function(addr, pilot) {
-        console.log('joinHost: ' + addr);
+      joinHost: function(addr, pilot, callback) {
         var ws = new WebSocket('ws://' + addr + ':' + socketPort, ['json']);
         ws.onopen = function() {
           var message = JSON.stringify({
@@ -48,6 +47,7 @@ angular.module('dynoforceApp')
             }
           });
           ws.send(message);
+          callback(ws);
         };
       }
     };
@@ -77,22 +77,22 @@ angular.module('dynoforceApp')
 
       /* Register a game server host on the local network. */
       registerHost: function(mechName, watcher, stopper) {
+        this.stopper = stopper;
         this._register({
           id: 'DynoForce',
           role: 'host',
           mech: mechName
         }, watcher);
-        this.stopper = stopper;
       },
 
       /* Register as a potential player on the local network. */
       registerPlayer: function(pilotName, watcher, stopper) {
+        this.stopper = stopper;
         this._register({
           id: 'DynoForce',
           role: 'player',
           pilot: pilotName
         }, watcher);
-        this.stopper = stopper;
       },
 
       _register: function(data, watcher) {
@@ -103,22 +103,17 @@ angular.module('dynoforceApp')
           var action = result.action;
           var text = result.service.txtRecord;
 
-          console.log('in _register, stopper: ');
-          console.log(self.stopper);
-
           if (action === 'added' && text.id === 'DynoForce' && text.role === 'host') {
             watcher(result.service);
           }
           else if (action === 'removed') {
-            console.log('REMOVED: ');
-            console.log(result.service);
-            console.log(self.stopper);
             self.stopper(result.service);
           }
         });
       },
 
       stop: function() {
+        this.zc.unwatch('_http._tcp.local.');
         this.zc.stop();
       }
     };
