@@ -36,4 +36,18 @@
 
 * Hit 'start a new game' button on E
 	- E should go to hosting screen with name and waiting message
-	X D should remain on main screen
+	- D should remain on main screen
+* Hit 'join' on E's entry on the D available host list
+	- D 'join' button should become 'cancel'
+	- E should add D's pilot name to connecting list
+* Hit 'cancel' on D
+	- D 'cancel' button should become 'join'
+	- E should remove D's pilot name from connecting list
+* Hit 'join' on D again
+	- D and E should behave as before
+* Hit 'return' on D
+	- D should return to main screen
+	- E should remove pilot from list
+* Hit 'cancel' on E
+	- E should return to main screen
+

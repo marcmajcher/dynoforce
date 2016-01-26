@@ -48,7 +48,9 @@ angular.module('dynoforceApp')
 						/* watcher */
 						console.log('ZC Hosting game: ' + service.txtRecord.mech);
 						console.log(service);
-						$scope.setGameState(gameState.HOSTING);
+						if (service.txtRecord.mech === gd.hostName) {
+							$scope.setGameState(gameState.HOSTING);
+						}
 					},
 					function() {});
 			};
@@ -81,6 +83,8 @@ angular.module('dynoforceApp')
 					},
 					function(service) {
 						/* stopper */
+						console.log('zeroConf stopper');
+						console.log(service);
 						delete gd.foundHosts[service.name];
 						$scope.$apply();
 					}
