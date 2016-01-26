@@ -19,6 +19,7 @@ angular.module('dynoforceApp')
 				hostAddr: undefined,
 				hostPort: undefined,
 				hostName: nameGen.getMechName(),
+				kaijuName: nameGen.getKaijuName(),
 				playerName: nameGen.getPilotName(),
 				foundHosts: {},
 				foundPlayers: {},

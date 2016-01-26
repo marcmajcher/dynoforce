@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('dynoforceApp')
-	.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState',
-		function($scope, webSocketServer, zeroConf, gameState) {
+	.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState', 'nameGen',
+		function($scope, webSocketServer, zeroConf, gameState, nameGen) {
 
 			var gd = $scope.gameData;
 
@@ -115,6 +115,11 @@ angular.module('dynoforceApp')
 				zeroConf.stop();
 				$scope.setGameState(gameState.IDLE);
 				gd.foundHosts = {};
+			};
+
+
+			$scope.refreshKaiju = function() {
+				gd.kaijuName = nameGen.getKaijuName();
 			};
 		}
 	]);
