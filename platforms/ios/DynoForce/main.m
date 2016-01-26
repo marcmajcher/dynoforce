@@ -20,8 +20,8 @@
 //  main.m
 //  DynoForce
 //
-//  Created by ___FULLUSERNAME___ on ___DATE___.
-//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
+//  Created by Marc Majcher on 1/1/2016.
+//  Copyright Gizmet Gameworks 2016. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

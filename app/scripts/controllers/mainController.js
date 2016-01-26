@@ -1,69 +1,80 @@
 'use strict';
 
 angular.module('dynoforceApp')
-  .controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 
-  	function ($scope, webSocketServer, zeroConf) {
+.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState', 
+	function ($scope, webSocketServer, zeroConf, gameState) {
 
-  		$scope.data = {
-  			hosts: []
-  		};
-  		$scope.state = {
-  			hosting: false,
-  			finding: false
+		/* Game hosting methods */
+
+		$scope.hostGame = function() {
+			$scope.gameData.foundPlayers = [];
+
+			var serverCallbacks = {
+				onStart: function(addr, port) {
+					$scope.gameData.hostAddr = addr;
+					$scope.gameData.hostPort = port;
+					console.log('Game server started on %s:%d', addr, port);
+				},
+				onStop: function(addr, port) {
+					console.log('Stopped listening on %s:%d', addr, port);
+				},
+				onOpen: function(conn) {
+					console.log('A user connected from %s', conn.remoteAddr);
+					alert('onOpen');
+					alert(conn.remoteAddr);
+				},
+				onMessage: function(conn, msg) {
+					var json = JSON.parse(msg);
+					console.log('Message: ' + json.message);
+					alert('Message: '+json.message);
+				},
+				onClose: function(conn) {
+					console.log('A user disconnected from %s', conn.remoteAddr);
+				}
+			};
+
+			webSocketServer.start(serverCallbacks);
+
+			zeroConf.registerHost($scope.gameData.hostName, function(service) {
+				console.log('Hosting game: ' + service.txtRecord.mech);
+				console.log(service);
+				$scope.gameData.state = gameState.HOSTING;
+				$scope.$apply();
+			});
 		};
-  		$scope.host = {
-  			name: '..'
-  		};
 
-  		/* Game hosting methods */
+		$scope.cancelHost = function() {
+			webSocketServer.stop();
+			zeroConf.stop();
+			$scope.gameData.state = gameState.IDLE;
+			$scope.gameData.foundPlayers = [];
+		};
 
-	  	$scope.hostGame = function() {
-	  		webSocketServer.start($scope.onHostStart);
-	  		zeroConf.register('host', function(service) {
-	  			console.log('Hosting game: '+service.txtRecord.mech);
-	  			console.log(service);
-		  		$scope.host.name = service.txtRecord.mech;
-		  		$scope.$apply();
-	  		});
-	  		$scope.state.hosting = true;
-	  	};
+		/* Game joining methods */
 
-	  	$scope.cancelHost = function() {
-	  		webSocketServer.stop();
-	  		zeroConf.stop();
-	  		$scope.state.hosting = false;
-	  		$scope.host = {};
-	  	};
+		$scope.findGames = function() {
+			$scope.gameData.state = gameState.FINDING;
+			$scope.gameData.foundHosts = [];
 
-	  	$scope.onHostStart = function(addr, port) {
-	  		$scope.host.addr = addr;
-	  		$scope.host.port = port;
-	  	};
+			zeroConf.registerPlayer($scope.gameData.playerName, function(service) {
+				console.log('Player '+service.txtRecord.pilot+' adding:');
+				console.log(service);
 
-	  	/* Game joining methods */
+				var hostAddr = service.addresses[0];
+				console.log('found host address: '+hostAddr+' : '+service.txtRecord.mech);
+				$scope.gameData.foundHosts.push({addr: hostAddr, name: service.txtRecord.mech});
+				$scope.$apply();
+			});
+		};
 
-	  	$scope.findGames = function() {
-	  		$scope.state.finding = true;
+		$scope.joinHost = function(addr) {
+			console.log('joining: '+addr);
+			webSocketServer.joinHost(addr);
+		};
 
-	  		zeroConf.register('player', function(service) {
-	         	console.log('Player '+service.txtRecord.pilot+' adding:');
-    		    console.log(service);
-
-         		var addr = service.addresses[0];
-	         	console.log('found host address: '+addr+' : '+service.txtRecord.mech);
-	         	$scope.data.hosts.push({addr: addr, name: service.txtRecord.mech});
-	         	$scope.$apply();
-	  		});
-	  	};
-
-	  	$scope.joinHost = function(addr) {
-	  		console.log('joining: '+addr);
-	  		webSocketServer.joinHost(addr);
-	  	};
-
-	  	$scope.cancelFind = function () {
-	  		zeroConf.stop();
-	  		$scope.state.finding = false;
-	  		$scope.data.hosts = [];
-	  	};
-  }]);
+		$scope.cancelFind = function () {
+			zeroConf.stop();
+			$scope.gameData.state = gameState.IDLE;
+			$scope.gameData.foundHosts = [];
+		};
+	}]);

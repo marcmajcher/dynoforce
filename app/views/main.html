@@ -1,34 +1,37 @@
-<div class="main-buttons" ng-if="!state.hosting && !state.finding">
-    <button class="btn btn-lg" ng-click="hostGame()" >Start New Game</button>
-    <button class="btn btn-lg" ng-click="findGames()">Find a Game</button>
+
+<div class="main-buttons" ng-if="gameData.state === gameState.IDLE">
+	<button class="btn btn-lg btn-success" ng-click="hostGame()" >Start New Game</button>
+	<button class="btn btn-lg btn-primary" ng-click="findGames()">Find a Game</button>
 </div>
-<div class="main-hosting" ng-if="state.hosting">
-	Hosting game {{host.name}}. Waiting for players...
+<div class="main-hosting" ng-if="gameData.state === gameState.HOSTING">
+	<h2>Hosting game <span class="mech-name">{{gameData.hostName}}</span>. Waiting for players to connect...</h2>
 	<div class="player-list">
 		<ul>
-		<li ng-repeat="player in host.players">
-			{{player}}
-		</li>
+			<li ng-repeat="player in gameData.foundPlayers">
+				<span class="pilot-name">{{player.name}}</span>
+			</li>
 		</ul>
 	</div>
+	<hr>
 	<div>
-		<button class="btn btn-lg" ng-click="cancelHost()">Cancel</button>
+		<button class="btn btn-lg btn-danger" ng-click="cancelHost()">Cancel</button>
 	</div>
 </div>
-<div class="main-finding" ng-if="state.finding">
-Looking for a game...
-	<h2>Available Hosts:</h2>
+<div class="main-finding" ng-if="gameData.state === gameState.FINDING">
+	<h2>Pilot <span class="pilot-name">{{gameData.playerName}}</span> looking for a game...</h2>
+	<h3>Available Hosts:</h3>
 	<div>
-		<ul>
-			<li ng-repeat="host in data.hosts">
-				{{host.name}}
-				<button class="btn btn-lg" ng-click="joinHost(host.addr)">
+		<ul class="host-list">
+			<li ng-repeat="host in gameData.foundHosts">
+				<h4>{{host.name}}</h4>
+				<button class="btn btn-lg btn-info" ng-click="joinHost(host.addr)">
 					JOIN
 				</button>
 			</li>
 		</ul>
 	</div>
+	<hr>
 	<div>
-		<button class="btn btn-lg" ng-click="cancelFind()">Cancel</button>
+		<button class="btn btn-lg btn-warning" ng-click="cancelFind()">Cancel</button>
 	</div>
 </div>

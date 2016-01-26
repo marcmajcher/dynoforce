@@ -260,7 +260,6 @@ angular.module('dynoforceApp')
 		'Cielo',
 		'Cluster',
 		'Comet',
-		'Copper',
 		'Corinthian',
 		'Corinthian',
 		'Coronado',

@@ -9,35 +9,14 @@ angular.module('dynoforceApp')
   return {
     wsserver: cordova.plugins.wsserver,
 
+    /* host-facing methods */
+
     /* Start a websocket server to host a game on the default port */
-    start: function(onStart) {
+    start: function(events) {
       console.log('starting server');
 
-      /* host-facing methods */
-
-      this.wsserver.start(socketPort, {
-        'onStart': function(addr, port) {
-          onStart(addr, port);
-          console.log('Listening on %s:%d', addr, port);
-        },
-        'onStop': function(addr, port) {
-          console.log('Stopped listening on %s:%d', addr, port);
-        },
-        'onOpen': function(conn) {
-          console.log('A user connected from %s', conn.remoteAddr);
-        },
-        'onMessage': function(conn, msg) {
-          console.log(conn, msg);
-          console.log('MSG');
-          var json = JSON.parse(msg);
-          console.log(json.message);
-          alert(json.message);
-        },
-        'onClose': function(conn) {
-          console.log('A user disconnected from %s', conn.remoteAddr);
-        },
-        'protocols': ['json']
-      });
+      events.protocols = ['json'];
+      this.wsserver.start(socketPort, events);
     },
 
     stop: function() {
@@ -87,39 +66,36 @@ angular.module('dynoforceApp')
     // websocket.close(); //close method
 
   }])
-.factory('zeroConf', ['nameGen', function(nameGen) {
+.factory('zeroConf', [function() {
 
   return {
-
     zc:  cordova.plugins.zeroconf,
 
-    register: function(role, watcher) {
-      if (role !== 'host' && role !== 'player') {
-        throw new Error('zeroConf - unknown role: ' + role);
-      }
+    /* Register a game server host on the local network. */
+    registerHost: function(mechName, watcher) {
+      this._register({id: 'DynoForce', role: 'host', mech: mechName}, watcher);
+    },
 
-      this.zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, {
-        'id': 'DynoForce',
-        'role': role,
-        'mech': nameGen.getMechName(),
-        'pilot': nameGen.getPilotName()
-      });
+    /* Register as a potential player on the local network. */
+    registerPlayer: function(pilotName, watcher) {
+      this._register({id: 'DynoForce', role: 'player', pilot: pilotName}, watcher);
+    },
+
+    _register: function(data, watcher) {
+      this.zc.register('_http._tcp.local.', 'DynoForce-' + device.model + '-' + device.uuid, 80, data);
 
       this.zc.watch('_http._tcp.local', function(result) {
         var action = result.action;
-        var zcservice = result.service;
+        var text = result.service.txtRecord;
 
-        if (action === 'added' &&
-          zcservice.txtRecord.id === 'DynoForce' &&
-          zcservice.txtRecord.role === 'host') {
-
-          watcher(zcservice);
-      } 
-      else if (action === 'removed') {
-        console.log('REMOVED: ');
-        console.log(zcservice);
-      }
-    });
+        if (action === 'added' && text.id === 'DynoForce' && text.role === 'host') {
+          watcher(result.service);
+        } 
+        else if (action === 'removed') {
+          console.log('REMOVED: ');
+          console.log(result.service);
+        }
+      });
     },
 
     stop: function() {
