@@ -1,4 +1,15 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+$color-blue: #0000cc;
+$color-green: #00cc00;
+$color-red: #cc0000;
+$color-yellow: #cccc00;
+
+$color-grey: #cccccc;
+$color-dark-red: #660000;
+$color-dark-blue: #000066;
+$color-dark-green: #006600;
+
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -6,49 +17,22 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 /* Imported from cordova template */
 
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-  }
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 
-  body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color: #ffffff;
+body {
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  background-color: black;
 
-    font-family: 'Roboto', 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-
-/* Portrait layout (default) */
-.phonegap-app {
-    /*background:url(../img/logo.png) no-repeat center top;*/ /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:10%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-                                 }
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-  .phonegap-app {
-    background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-                                    }
-                                  }
-
-/* */
+  font-family: 'Roboto', 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
 
 @font-face {
   font-family: 'PsiphoonBB';
@@ -57,61 +41,34 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-style: normal;
 }
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+.splash {
+  padding-top: 30px;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+
+  .container-img {
+    max-width: 890px;
+  }
 
   .btn {
     font-size: 21px;
     padding: 14px 24px;
     margin-top: 20px;
+
+    .go-btn {
+      font-size: 30px;
+    }
   }
 
   h1 {
     font-family: 'PsiphoonBB';
-    font-size: 36px;
+    font-size: 10vw;
+    color: $color-grey;
+  }
+
+  .image-splash {
+    padding: 20px 40px;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -119,11 +76,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   font-family: 'PsiphoonBB';
 }
 
-.image-splash {
-  width: 300px;
-  height: 300px;
+.btn-success {
+  background-color: $color-green;
 }
-
 
 .host-list {
   list-style-type: none;
@@ -135,18 +90,31 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .pilot-name {
   font-weight: bold;
-  color: #000033;
+  color: $color-dark-blue;
 }
 
 .mech-name {
   font-weight: bold;
-  color: #330000;
+  color: $color-dark-green;
+}
+
+.red {
+  color: $color-red;
+}
+.yellow {
+  color: $color-yellow;
+}
+.blue {
+  color: $color-blue;
+}
+.green {
+  color: $color-green;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    // max-width: 730px;
   }
 
   /* Remove the padding we set earlier */

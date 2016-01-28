@@ -18,63 +18,58 @@
   <!-- endbuild -->
 </head>
 <body>
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
 
-      <!-- Add your site or application content here -->
+  <div class="container" ng-controller="GameController">
+    <div ng-view=""></div>
+  </div>
 
-      <div class="container" ng-controller="GameController">
-        <div ng-view=""></div>
-      </div>
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+  !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+   (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+   r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+ }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-      <script>
-      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-     }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-XXXXX-X');
+ ga('send', 'pageview');
+ </script>
 
-     ga('create', 'UA-XXXXX-X');
-     ga('send', 'pageview');
-     </script>
+ <script type="text/javascript" src="cordova.js"></script>
+ <!-- build:js(.) scripts/vendor.js -->
+ <!-- bower:js -->
+ <script src="bower_components/jquery/dist/jquery.js"></script>
+ <script src="bower_components/angular/angular.js"></script>
+ <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+ <script src="bower_components/angular-animate/angular-animate.js"></script>
+ <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+ <script src="bower_components/angular-resource/angular-resource.js"></script>
+ <script src="bower_components/angular-route/angular-route.js"></script>
+ <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+ <script src="bower_components/angular-touch/angular-touch.js"></script>
+ <!-- endbower -->
+ <!-- endbuild -->
 
-     <script type="text/javascript" src="cordova.js"></script>
-     <!-- build:js(.) scripts/vendor.js -->
-     <!-- bower:js -->
-     <script src="bower_components/jquery/dist/jquery.js"></script>
-     <script src="bower_components/angular/angular.js"></script>
-     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-     <script src="bower_components/angular-animate/angular-animate.js"></script>
-     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-     <script src="bower_components/angular-resource/angular-resource.js"></script>
-     <script src="bower_components/angular-route/angular-route.js"></script>
-     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-     <script src="bower_components/angular-touch/angular-touch.js"></script>
-     <!-- endbower -->
-     <!-- endbuild -->
-
-     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-     <script src="scripts/app.js"></script>
-     <script src="scripts/controllers/gameController.js"></script>
-     <script src="scripts/controllers/splashController.js"></script>
-     <script src="scripts/controllers/mainController.js"></script>
-     <script src="scripts/controllers/services.js"></script>
-     <script src="scripts/controllers/nameService.js"></script>
-     <!-- endbuild -->
-     <script type="text/javascript">
-     angular.element(document).ready(function () {
-      if (window.cordova) {
-        console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
-        document.addEventListener('deviceready', function () {
-          console.log("Deviceready event has fired, bootstrapping AngularJS.");
-          angular.bootstrap(document.body, ['dynoforceApp']);
-        }, false);
-      } else {
-        console.log("Running in browser, bootstrapping AngularJS now.");
-        angular.bootstrap(document.body, ['dynoforceApp']);
-      }
-    });
-     </script>
-   </body>
-   </html>
+ <!-- build:js({.tmp,app}) scripts/scripts.js -->
+ <script src="scripts/app.js"></script>
+ <script src="scripts/controllers/gameController.js"></script>
+ <script src="scripts/controllers/splashController.js"></script>
+ <script src="scripts/controllers/mainController.js"></script>
+ <script src="scripts/services/networkServices.js"></script>
+ <script src="scripts/services/nameService.js"></script>
+ <!-- endbuild -->
+ <script type="text/javascript">
+ angular.element(document).ready(function () {
+  if (window.cordova) {
+    console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+    document.addEventListener('deviceready', function () {
+      console.log("Deviceready event has fired, bootstrapping AngularJS.");
+      angular.bootstrap(document.body, ['dynoforceApp']);
+    }, false);
+  } else {
+    console.log("Running in browser, bootstrapping AngularJS now.");
+    angular.bootstrap(document.body, ['dynoforceApp']);
+  }
+});
+ </script>
+</body>
+</html>
