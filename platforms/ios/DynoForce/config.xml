@@ -39,7 +39,7 @@
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="webviewbounce" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="detect-data-types" value="true" />
@@ -67,20 +67,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    <preference name="BackupWebStorage" value="local" />
     <icon src="icon.png" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="resources/icon/android/icon-36-ldpi.png" />
-    <icon gap:platform="android" gap:qualifier="mdpi" src="resources/icon/android/icon-48-mdpi.png" />
-    <icon gap:platform="android" gap:qualifier="hdpi" src="resources/icon/android/icon-72-hdpi.png" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="resources/icon/android/icon-96-xhdpi.png" />
-    <icon gap:platform="blackberry" src="resources/icon/blackberry/icon-80.png" />
-    <icon gap:platform="blackberry" gap:state="hover" src="resources/icon/blackberry/icon-80.png" />
-    <icon gap:platform="ios" height="57" src="resources/icon/ios/icon-57.png" width="57" />
-    <icon gap:platform="ios" height="72" src="resources/icon/ios/icon-72.png" width="72" />
-    <icon gap:platform="ios" height="114" src="resources/icon/ios/icon-57-2x.png" width="114" />
-    <icon gap:platform="ios" height="144" src="resources/icon/ios/icon-72-2x.png" width="144" />
-    <icon gap:platform="webos" src="resources/icon/webos/icon-64.png" />
-    <icon gap:platform="winphone" src="resources/icon/windows-phone/icon-48.png" />
-    <icon gap:platform="winphone" gap:role="background" src="resources/icon/windows-phone/icon-173-tile.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="resources/screen/android/screen-ldpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="resources/screen/android/screen-mdpi-portrait.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="resources/screen/android/screen-hdpi-portrait.png" />
@@ -101,4 +89,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="ws://*" />
+    <gap:config-file overwrite="true" parent="UIViewControllerBasedStatusBarAppearance" platform="ios">
+        <false />
+    </gap:config-file>
+    <gap:config-file overwrite="true" parent="UIStatusBarHidden" platform="ios">
+        <true />
+    </gap:config-file>
 </widget>

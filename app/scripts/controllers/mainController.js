@@ -1,8 +1,9 @@
 'use strict';
+// var cordova = { plugins: {} };
 
 angular.module('dynoforceApp')
-	.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState', 'nameGen',
-		function($scope, webSocketServer, zeroConf, gameState, nameGen) {
+	.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState', 'nameGen', 'Pilot',
+		function($scope, webSocketServer, zeroConf, gameState, nameGen, Pilot) {
 
 			var gd = $scope.gameData;
 
@@ -15,6 +16,7 @@ angular.module('dynoforceApp')
 					onStart: function(addr, port) {
 						gd.hostAddr = addr;
 						gd.hostPort = port;
+						$scope.addPlayer(new Pilot(addr, gd.pilotName));
 						console.log('Game server *' + gd.hostName + '* started.');
 					},
 					onStop: function(addr, port) {
@@ -27,16 +29,13 @@ angular.module('dynoforceApp')
 					onMessage: function(conn, msg) {
 						var json = JSON.parse(msg);
 						if (json.message === 'connect') {
-							gd.foundPlayers[conn.remoteAddr] = {
-								addr: conn.remoteAddr,
-								name: json.args.pilot
-							};
+							$scope.addPlayer(new Pilot(conn.remoteAddr, json.args.pilot));
 							$scope.$apply();
 						}
 					},
 					onClose: function(conn) {
 						console.log('A user disconnected from %s', conn.remoteAddr);
-						delete gd.foundPlayers[conn.remoteAddr];
+						$scope.removePlayer(conn.remoteAddr);
 						$scope.$apply();
 					}
 				};
@@ -92,7 +91,7 @@ angular.module('dynoforceApp')
 			};
 
 			$scope.joinHost = function(addr) {
-				webSocketServer.joinHost(addr, gd.playerName, function(ws) {
+				webSocketServer.joinHost(addr, gd.pilotName, function(ws) {
 					gd.webSocket = ws;
 					$scope.setGameState(gameState.JOINING);
 				});
@@ -116,7 +115,6 @@ angular.module('dynoforceApp')
 				$scope.setGameState(gameState.IDLE);
 				gd.foundHosts = {};
 			};
-
 
 			$scope.refreshKaiju = function() {
 				gd.kaijuName = nameGen.getKaijuName();

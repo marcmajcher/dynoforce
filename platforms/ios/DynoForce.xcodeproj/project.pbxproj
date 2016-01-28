@@ -43,11 +43,11 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		993C1E76DB894A1D9637DDDA /* ZeroConf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE2C7DDF384F6A99573293 /* ZeroConf.swift */; };
+		A19392B45CB841E8AA4F125F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62965072343D4F009E49395E /* CDVStatusBar.m */; };
 		A61F31B2F5E249F1912B2CF9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F10857BE8542E3B1A69D33 /* Security.framework */; };
 		B1A25321BC33412EAD1BB772 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA40F14774264C9A9FD752BF /* Foundation.framework */; };
 		C2D776F932BC4762A024EE84 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		A19392B45CB841E8AA4F125F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 62965072343D4F009E49395E /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +100,7 @@
 		3C72A068DDC64DA49EFBA41C /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		487ABDF408844F54B7DE7155 /* libPocketSocket.a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = libPocketSocket.a; path = "DynoForce/Plugins/cordova-plugin-websocket-server/libPocketSocket.a"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		62965072343D4F009E49395E /* CDVStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
 		674CB84C45F7448EB77E388E /* WebSocketServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = WebSocketServer.swift; path = "cordova-plugin-websocket-server/WebSocketServer.swift"; sourceTree = "<group>"; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		AB3847182866417F9AE25511 /* ZeroConf-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZeroConf-Bridging-Header.h"; path = "cordova-plugin-zeroconf/ZeroConf-Bridging-Header.h"; sourceTree = "<group>"; };
 		BD32E4490F014787A8049492 /* PSWebSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSWebSocketServer.h; path = "cordova-plugin-websocket-server/PSWebSocketServer.h"; sourceTree = "<group>"; };
 		CB54A5C0A8264257B31DCA02 /* PSWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSWebSocket.h; path = "cordova-plugin-websocket-server/PSWebSocket.h"; sourceTree = "<group>"; };
+		D0913082F92C47B1AD9C5F86 /* CDVStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
@@ -125,8 +127,6 @@
 		F13AFBD7C7124205A508CCAC /* WebSocketServer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WebSocketServer-Bridging-Header.h"; path = "cordova-plugin-websocket-server/WebSocketServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = DynoForce/config.xml; sourceTree = "<group>"; };
 		FEDA6C6FE1EA4D8A898BE6FF /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
-		62965072343D4F009E49395E /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		D0913082F92C47B1AD9C5F86 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

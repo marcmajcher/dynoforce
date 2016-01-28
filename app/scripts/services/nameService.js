@@ -4,7 +4,7 @@ angular.module('dynoforceApp')
 	.factory('nameGen', function() {
 		return {
 
-			getMechName: function() {
+			getHostName: function() {
 				var first = this.firstname[Math.floor(Math.random() * this.firstname.length)];
 				var last = first;
 				while (last === first) {
@@ -49,7 +49,6 @@ angular.module('dynoforceApp')
 				'Brutus',
 				'Buccaneer',
 				'Buffalo',
-				'Chama',
 				'Cherno',
 				'Cherno',
 				'Chrome',
@@ -109,7 +108,6 @@ angular.module('dynoforceApp')
 				'Helldiver',
 				'Hera',
 				'Hercules',
-				'Himawari',
 				'Hopper',
 				'Horizon',
 				'Horizon',
@@ -128,7 +126,6 @@ angular.module('dynoforceApp')
 				'Juno',
 				'Kilrain',
 				'Lancer',
-				'Lattice',
 				'Laurel',
 				'Liberator',
 				'Lightning',
@@ -220,7 +217,7 @@ angular.module('dynoforceApp')
 				'Vulcan',
 				'Vulcan',
 				'Whirlwind',
-				'Whisky',
+				'Whiskey',
 				'Wildcat',
 				'Willow',
 				'Yankee',
@@ -262,7 +259,6 @@ angular.module('dynoforceApp')
 				'Brutus',
 				'Buccaneer',
 				'Buffalo',
-				'Chama',
 				'Cherno',
 				'Chrome',
 				'Cielo',
@@ -320,7 +316,6 @@ angular.module('dynoforceApp')
 				'Helldiver',
 				'Hera',
 				'Hercules',
-				'Himawari',
 				'Hopper',
 				'Horizon',
 				'Hotspur',
@@ -432,7 +427,7 @@ angular.module('dynoforceApp')
 				'Voyager',
 				'Vulcan',
 				'Whirlwind',
-				'Whisky',
+				'Whiskey',
 				'Wildcat',
 				'Willow',
 				'Yankee',
@@ -776,6 +771,5 @@ angular.module('dynoforceApp')
 				'zula',
 				''
 			]
-
 		};
 	});
