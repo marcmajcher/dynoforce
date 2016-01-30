@@ -49,14 +49,14 @@ body {
 }
 
 @font-face {
-  font-family: 'PsiphoonBB';
-  src: url('./fonts/PsiphoonBB.eot?#iefix') format('embedded-opentype'),  url('./fonts/PsiphoonBB.woff') format('woff'), url('./fonts/PsiphoonBB.ttf')  format('truetype'), url('./fonts/PsiphoonBB.svg#PsiphoonBB') format('svg');
+  font-family: 'bulletproof';
+  src: url('./fonts/bulletproofbb.eot?#iefix') format('embedded-opentype'),  url('./fonts/bulletproofbb.woff') format('woff'), url('./fonts/bulletproofbb.ttf')  format('truetype'), url('./fonts/bulletproofbb.svg#bulletproofbb') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 h1.dyno-force {
-  font-family: 'PsiphoonBB';
+  font-family: 'bulletproof';
   font-size: 10vw;
   color: $color-grey;
 }
@@ -117,7 +117,7 @@ h1.dyno-force {
 }
 
 .btn {
-  font-family: 'PsiphoonBB';
+  font-family: 'bulletproof';
 }
 
 .btn-success {
