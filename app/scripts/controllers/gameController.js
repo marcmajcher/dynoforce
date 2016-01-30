@@ -35,13 +35,14 @@ angular.module('dynoforceApp')
 
 		$scope.addPlayer = function(pilot) {
 			$scope.gameData.foundPlayers[pilot.addr] = pilot;
-			$scope.gameData.pilotCount = $scope.gameData.foundPlayers.keys().length;
+			$scope.gameData.pilotCount = Object.keys($scope.gameData.foundPlayers).length;
+			console.log($scope.gameData.foundPlayers);
 			$scope.safeApply();
 		};
 
 		$scope.removePlayer = function(addr) {
 			delete $scope.gameData.foundPlayers[addr];
-			$scope.gameData.pilotCount = $scope.gameData.foundPlayers.keys().length;
+			$scope.gameData.pilotCount = Object.keys($scope.gameData.foundPlayers).length;
 			$scope.safeApply();
 		};
 
