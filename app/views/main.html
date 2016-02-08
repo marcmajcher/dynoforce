@@ -10,17 +10,15 @@
 		</div>
 	</div>
 	<div class="main-hosting" ng-if="gameData.state === gameState.HOSTING">
-		<h2>Team <span class="mech-name">{{gameData.hostName}}</span>!
-		<br>Waiting for players...</h2>
-		<div>
-			<ul class="player-list">
-				<li ng-repeat="(key, pilot) in gameData.foundPlayers">
-					<span class="pilot-name">{{pilot.name}}</span>
-				</li>
-			</ul>
-		</div>
-		<hr>
+		<h2>Team <span class="mech-name">{{gameData.hostName}}</span>!</h2>
+		Waiting for players...
+		<table class="player-list table">
+			<tr ng-repeat="(key, pilot) in gameData.foundPlayers">
+				<td>[Pilot] <span class="pilot-name">{{pilot.name}}</span></td>
+			</trf>
+		</table>
 		<div class="main-host-buttons">
+			<hr>
 			<div ng-if="gameData.pilotCount > 1">
 				<button class="btn btn-lg btn-success" ng-click="startGame()">FIGHT!</button>
 			</div>
@@ -30,30 +28,31 @@
 		</div>
 	</div>
 	<div class="main-finding" ng-if="gameData.state === gameState.FINDING || gameData.state === gameState.JOINING">
-		<h2>Pilot <span class="pilot-name">{{gameData.pilotName}}</span><br>looking for a game...</h2>
-		<hr>
-		<h3>Available Hosts:</h3>
-		<div>
-			<ul class="host-list">
-				<li ng-repeat="(key, host) in gameData.foundHosts">
-					<h4>{{host.name}}</h4>
-					<button class="btn btn-lg btn-info" ng-click="joinHost(host.addr)" ng-if="gameData.state === gameState.FINDING">
-						JOIN
-					</button>
-					<button class="btn btn-lg btn-warning" ng-click="unjoinHost()" ng-if="gameData.state === gameState.JOINING">
-						CANCEL
-					</button>
-				</li>
-			</ul>
-		</div>
-		<hr>
-		<div class="main-find-buttons">
+		<h2>Pilot <span class="pilot-name">{{gameData.pilotName}}</span>
+			<!--<br>looking for a game...</h2>-->
 			<div>
-				<button class="btn btn-lg btn-primary" ng-click="refreshKaiju()">Fight {{gameData.kaijuName}}</button>
+				<table class="host-list table">
+					<tr ng-repeat="(key, host) in gameData.foundHosts">
+						<td class="host-info">[Team] <span class="team-name">{{host.name}}</span></td>
+						<td>
+							<button class="btn btn-lg btn-info pull-right" ng-click="joinHost(host.addr)" ng-if="gameData.state === gameState.FINDING">
+								JOIN
+							</button>
+							<button class="btn btn-lg btn-warning pull-right" ng-click="unjoinHost()" ng-if="gameData.state === gameState.JOINING">
+								CANCEL
+							</button>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<div>
-				<button class="btn btn-lg btn-danger" ng-click="cancelFind()">Return</button>
+			<hr>
+			<div class="main-find-buttons">
+				<div>
+					<button class="btn btn-lg btn-primary" ng-click="refreshKaiju()">Fight {{gameData.kaijuName}}</button>
+				</div>
+				<div>
+					<button class="btn btn-lg btn-danger" ng-click="cancelFind()">Return</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
