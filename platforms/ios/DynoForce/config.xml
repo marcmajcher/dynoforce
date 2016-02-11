@@ -80,7 +80,6 @@
     <gap:splash gap:platform="ios" height="1024" src="resources/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="resources/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="resources/screen/windows-phone/screen-portrait.jpg" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -89,10 +88,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="ws://*" />
-    <gap:config-file overwrite="true" parent="UIViewControllerBasedStatusBarAppearance" platform="ios">
-        <false />
-    </gap:config-file>
-    <gap:config-file overwrite="true" parent="UIStatusBarHidden" platform="ios">
-        <true />
-    </gap:config-file>
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="default" />
 </widget>
