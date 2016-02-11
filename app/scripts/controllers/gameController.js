@@ -22,8 +22,6 @@ angular.module('dynoforceApp')
 
 		$scope.gameData = {
 			state: gameState.IDLE,
-			hostAddr: undefined,
-			hostPort: undefined,
 			hostName: nameGen.getHostName(),
 			kaijuName: nameGen.getKaijuName(),
 			pilotName: nameGen.getPilotName(),

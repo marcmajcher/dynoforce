@@ -3,53 +3,6 @@
 /* global device */
 
 angular.module('dynoforceApp')
-  .constant('socketPort', 1337)
-  .factory('webSocketServer', ['socketPort', function(socketPort) {
-
-    return {
-      wsserver: cordova.plugins.wsserver,
-
-      /* host-facing methods */
-
-      /* Start a websocket server to host a game on the default port */
-      start: function(events) {
-        events.protocols = ['json'];
-        this.wsserver.start(socketPort, events);
-      },
-
-      stop: function() {
-        this.wsserver.stop();
-      },
-
-      sendToPlayer: function(uuid, message) {
-        this.wsserver.send({
-          'uuid': uuid
-        }, message);
-      },
-
-      removePlayer: function(uuid) {
-        this.wsserver.close({
-          'uuid': uuid
-        });
-      },
-
-      /* player-facing methods */
-
-      joinHost: function(addr, pilot, callback) {
-        var ws = new WebSocket('ws://' + addr + ':' + socketPort, ['json']);
-        ws.onopen = function() {
-          var message = JSON.stringify({
-            'message': 'connect',
-            'args': {
-              'pilot': pilot
-            }
-          });
-          ws.send(message);
-          callback(ws);
-        };
-      }
-    };
-  }])
   .factory('zeroConf', [function() {
 
     return {

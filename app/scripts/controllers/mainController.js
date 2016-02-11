@@ -1,64 +1,34 @@
 'use strict';
-// var cordova = { plugins: {} };
 
 angular.module('dynoforceApp')
-	.controller('MainController', ['$scope', 'webSocketServer', 'zeroConf', 'gameState', 'nameGen', 'Pilot',
-		function($scope, webSocketServer, zeroConf, gameState, nameGen, Pilot) {
+.controller('MainController', ['$scope', 'heartService', 'zeroConf', 'gameState', 'nameGen',
+	function($scope, heartService, zeroConf, gameState, nameGen) {
 
-			var gd = $scope.gameData;
+		var gd = $scope.gameData;
 
-			/* Game hosting methods */
+		/* Game hosting methods */
 
-			$scope.hostGame = function() {
-				gd.foundPlayers = {};
+		$scope.hostGame = function() {
 
-				var serverCallbacks = {
-					onStart: function(addr, port) {
-						gd.hostAddr = addr;
-						gd.hostPort = port;
-						$scope.addPlayer(new Pilot(addr, gd.pilotName));
-						console.log('Game server *' + gd.hostName + '* started.');
-					},
-					onStop: function(addr, port) {
-						console.log('Stopped listening on %s:%d', addr, port);
-						gd.state = gameState.IDLE;
-					},
-					onOpen: function(conn) {
-						console.log('A user connected from %s', conn.remoteAddr);
-					},
-					onMessage: function(conn, msg) {
-						var json = JSON.parse(msg);
-						if (json.message === 'connect') {
-							$scope.addPlayer(new Pilot(conn.remoteAddr, json.args.pilot));
-							$scope.$apply();
-						}
-					},
-					onClose: function(conn) {
-						console.log('A user disconnected from %s', conn.remoteAddr);
-						$scope.removePlayer(conn.remoteAddr);
-						$scope.$apply();
+			heartService.startHost();
+
+			zeroConf.registerHost(gd.hostName,
+				function(service) {
+					/* watcher */
+					console.log('ZC Hosting game: ' + service.txtRecord.mech);
+					console.log(service);
+					if (service.txtRecord.mech === gd.hostName) {
+						$scope.setGameState(gameState.HOSTING);
 					}
-				};
+				},
+				function() {});
+		};
 
-				webSocketServer.start(serverCallbacks);
-
-				zeroConf.registerHost(gd.hostName,
-					function(service) {
-						/* watcher */
-						console.log('ZC Hosting game: ' + service.txtRecord.mech);
-						console.log(service);
-						if (service.txtRecord.mech === gd.hostName) {
-							$scope.setGameState(gameState.HOSTING);
-						}
-					},
-					function() {});
-			};
-
-			$scope.stopHost = function() {
-				webSocketServer.stop();
-				zeroConf.stop();
-				$scope.setGameState(gameState.IDLE);
-				gd.foundPlayers = {};
+		$scope.stopHost = function() {
+				// webSocketServer.stop();
+				// zeroConf.stop();
+				// $scope.setGameState(gameState.IDLE);
+				// gd.foundPlayers = {};
 			};
 
 			/* Game joining methods */
@@ -87,15 +57,15 @@ angular.module('dynoforceApp')
 						delete gd.foundHosts[service.name];
 						$scope.$apply();
 					}
-				);
+					);
 			};
 
-			$scope.joinHost = function(addr) {
-				webSocketServer.joinHost(addr, gd.pilotName, function(ws) {
-					gd.webSocket = ws;
-					$scope.setGameState(gameState.JOINING);
-				});
-			};
+			$scope.joinHost = function(/*addr*/) {
+				// webSocketServer.joinHost(addr, gd.pilotName, function(ws) {
+				// 	gd.webSocket = ws;
+				// 	$scope.setGameState(gameState.JOINING);
+				// });
+};
 
 			// websocket.onclose = function(evt) { /* do stuff */ }; //on close event
 			// websocket.onmessage = function(evt) { /* do stuff */ }; //on message event
@@ -120,4 +90,4 @@ angular.module('dynoforceApp')
 				gd.kaijuName = nameGen.getKaijuName();
 			};
 		}
-	]);
+		]);
