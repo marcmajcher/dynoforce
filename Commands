@@ -1,9 +1,21 @@
+Game States:
+
+	ERROR:   something went wrong!
+	IDLE:    not doing anything, probably in main menu
+	HOSTING: started hosting a game, not started yet
+	FINDING: looking for a game in find game screen
+	JOINING: joined team, waiting for game to start
+
 Commands:
 
 All commands are sent from a player to the host, or from the host to a player.
 (The host player will send "messages" to itself, but not over a socket.)
 
+player-list:
+	- sent from host, array of current players joining game
+
 ok-go: 
 	- the player is facing the correct orientation to begin the game. when all players are facing north, enable begin fight button on host
+
 nok-nogo:
 	- the player is not facing the correct orientation to begin the game. disable fight button on host

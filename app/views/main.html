@@ -11,10 +11,14 @@
 	</div>
 	<div class="main-hosting" ng-if="gameData.state === gameState.HOSTING">
 		<h2>Team <span class="mech-name">{{gameData.hostName}}</span>!</h2>
-		Waiting for players...
+		<div ng-if="gameData.foundPlayers.length <= 5">
+			Waiting for players...
+		</div>
 		<table class="player-list table">
 			<tr ng-repeat="(key, pilot) in gameData.foundPlayers">
-				<td>[Pilot] <span class="pilot-name">{{pilot.name}}</span></td>
+				<td>[Pilot] <span class="pilot-name">{{pilot.name}}</span>
+<br>ID: {{pilot.addr}}
+				</td>
 			</trf>
 		</table>
 		<div class="main-host-buttons">
@@ -27,9 +31,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="main-finding" ng-if="gameData.state === gameState.FINDING || gameData.state === gameState.JOINING">
+	<div class="main-finding" ng-if="gameData.state === gameState.FINDING">
 		<h2>Pilot <span class="pilot-name">{{gameData.pilotName}}</span>
-			<!--<br>looking for a game...</h2>-->
+			<div class="looking" ng-if="gameData.foundHosts.length <= 0">
+				Looking for a game...
+			</div>
 			<div>
 				<table class="host-list table">
 					<tr ng-repeat="(key, host) in gameData.foundHosts">
@@ -45,14 +51,23 @@
 					</tr>
 				</table>
 			</div>
-			<hr>
 			<div class="main-find-buttons">
-				<div>
-					<button class="btn btn-lg btn-primary" ng-click="refreshKaiju()">Fight {{gameData.kaijuName}}</button>
-				</div>
-				<div>
-					<button class="btn btn-lg btn-danger" ng-click="cancelFind()">Return</button>
-				</div>
+				<hr>
+				<button class="btn btn-lg btn-danger" ng-click="cancelFind()">Return</button>
 			</div>
 		</div>
 	</div>
+	<div class="main-joining" ng-if="gameData.state === gameState.JOINING">
+
+		<table class="player-list table">
+			<tr ng-repeat="(key, pilot) in gameData.foundPlayers">
+				<td>[Pilot] <span class="pilot-name">{{pilot.name}}</span></td>
+			</trf>
+		</table>
+
+		<div class="main-find-buttons">
+			<hr>
+			<button class="btn btn-lg btn-danger" ng-click="cancelFind()">Return</button>
+		</div>
+	</div>
+</div>
