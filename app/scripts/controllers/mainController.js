@@ -10,7 +10,10 @@ angular.module('dynoforceApp')
 
 		$scope.hostGame = function() {
 
-			heartService.startHost();
+			heartService.startHost().then(function(){}, function(){}, 
+				function(notice) {
+					alert('NOTIFY: '+notice);
+				});
 
 			zeroConf.registerHost(gd.hostName,
 				function(service) {
